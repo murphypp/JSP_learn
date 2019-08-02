@@ -25,8 +25,10 @@
                 if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                     if(xmlHttp.responseText === "1") {
                         document.getElementById("ERROR_name").innerHTML = "用户名已被注册！";
+                        flag=1;
                     } else {
                         document.getElementById("ERROR_name").innerHTML = "";
+                        flag=0;
                     }
                 }
             };
@@ -34,7 +36,6 @@
             xmlHttp.open("GET", "${pageContext.request.contextPath}/RegisterCheck?username="+username, true);
             xmlHttp.send();
         }
-
         function showErrorName() {
             var name = document.getElementById("username").value;
             var reg= /[a-zA-Z0-9]/;
@@ -43,7 +44,7 @@
                 flag=1;
             }else if(!reg.test(name)){
                 document.getElementById("ERROR_name").innerText="用户名只能由字母和数字组成";
-                flag=0;
+                flag=1;
             }
             else { //进入检验是否重复阶段
                 check();
@@ -140,8 +141,7 @@
             }
 
         }
-        
-        
+
     </script>
 </head>
 <body>
