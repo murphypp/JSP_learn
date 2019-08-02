@@ -25,7 +25,6 @@ public class RegisterCheck extends HttpServlet {
             if(test.getUsername().equals(username))
                 response.getWriter().print("1");
         }
-
     }
 
     @Override

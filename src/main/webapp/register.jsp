@@ -146,6 +146,7 @@
 </head>
 <body>
 <div class="div_form">
+    <font color="red"> ${message}</font>
 <form action="${pageContext.request.contextPath}/RegisterServlet" method="post" onsubmit="return submitTest()" >
     <label >用户名:</label>  <input type="text" name="username" id="username" onblur="showErrorName()"> <span id="ERROR_name">长度6-16个字符</span><br>
     <label >真实姓名:</label> <input type="text" name="realname"><br>
@@ -165,8 +166,7 @@
     <label >个人签名:</label><textarea name="sign" id="" cols="30" rows="2" required></textarea><br>
     <br>
 
-    <input type="submit" value="注册" class="button_left" > <input type="reset" name="取消" class="button_right" >
-
+    <input type="submit" value="注册" class="button_left" > <input type="reset" name="重置" class="button_right" >
 </form>
 
 </div>

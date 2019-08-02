@@ -45,10 +45,10 @@
     }
 </style>
 
-<script>
+<%--<script>
     document.write("list中：${requestScope.userList[0].username}<br>");
     document.write("session值:${sessionScope.user}<br>");
-</script>
+</script>--%>
 
 
 
