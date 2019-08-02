@@ -19,6 +19,9 @@ import java.util.List;
 //@WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
     static private List<User> userList = new ArrayList<>();
+    static {
+        userList.add(new User("shaoxiong.lin","111111","12@12.com","lin",1,"男","111"));
+    }
     public void  doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //处理注册消息并用集合保存
         request.setCharacterEncoding("UTF-8");

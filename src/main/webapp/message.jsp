@@ -1,5 +1,4 @@
 <%@ page import="java.util.*" %>
-<%@ page import="main.java.com.ucar.training.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="C"%>
@@ -11,24 +10,8 @@
 </head>
 <body>
 
-<%--定义list保存 Tomcat开启时注册的用户信息--%>
-<%--更一般的保存为数据库文件，已写在另一个项目中--%>
-<%!
-    List<User> userList = new ArrayList<>();
-%>
-
 <%
     request.setCharacterEncoding("UTF-8");
-    String username = request.getParameter("username");
-    String password = request.getParameter("password1");
-    String email    = request.getParameter("email");
-    String realname = request.getParameter("realname");
-    String phone    = request.getParameter("phone");
-    String age      = request.getParameter("age");
-    String sex      = request.getParameter("sex");
-    User a = new User(username,password,email,realname,Integer.parseInt(age),sex,phone);
-    userList.add(a);
-    request.setAttribute("userList", userList);
 %>
 <style type="text/css">
     #user
@@ -62,6 +45,12 @@
     }
 </style>
 
+<script>
+    document.write("list中：${requestScope.userList[0].username}<br>");
+    document.write("session值:${sessionScope.user}<br>");
+</script>
+
+
 
 <table id="user" width="50%" border="1" cellspacing="1" cellpadding="1" align="center">
     <tr>
@@ -74,6 +63,7 @@
         <td>邮箱</td>
     </tr>
     <C:forEach items="${requestScope.userList}" var="h">
+        <C:if test="${!(sessionScope.user eq h.username)}" var="flag" scope="session">
         <tr>
             <td>${h.username}</td>
             <td>${h.realname}</td>
@@ -83,6 +73,7 @@
             <td>${h.sex}</td>
             <td>${h.email}</td>
         </tr>
+        </C:if>
     </C:forEach>
 </table>
 </body>

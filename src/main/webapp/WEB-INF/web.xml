@@ -5,6 +5,7 @@
          version="3.1">
 
   <welcome-file-list>
+    <welcome-file>login.jsp</welcome-file>
     <welcome-file>register.jsp</welcome-file>
   </welcome-file-list>
 
@@ -27,5 +28,13 @@
     <url-pattern>/RegisterCheck</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>LoginCheck</servlet-name>
+    <servlet-class>com.ucar.training.LoginCheck</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginCheck</servlet-name>
+    <url-pattern>/LoginCheck</url-pattern>
+  </servlet-mapping>
 
 </web-app>
