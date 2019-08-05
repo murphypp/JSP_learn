@@ -12,7 +12,7 @@
 <html>
 <head>
     <title>register</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="register.css" rel="stylesheet" type="text/css" />
     <script>
         //定义全局不可提交变量
         var flag=1;
@@ -78,7 +78,7 @@
                 document.getElementById("ERROR_password1").innerText="*(为必填)";
                 flag=1;
             }else if(!reg.test(password1)){
-                document.getElementById("ERROR_password1").innerText="密码只能由字母和数字组成";
+                document.getElementById("ERROR_password1").innerText="密码6-18位，只能由字母数字组成!";
                 flag=1;
             }
             else{

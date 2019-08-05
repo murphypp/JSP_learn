@@ -27,6 +27,7 @@ public class LoginCheck extends HttpServlet {
         for(User user:userList){
             if(username.equals(user.getUsername())){
                 System.out.println(username+"------"+user.getUsername());
+                System.out.println(password+"------"+user.getPassword());
                 if (password.equals(user.getPassword())){
                     //登录成功，记录session
                     HttpSession session = req.getSession();
@@ -37,9 +38,11 @@ public class LoginCheck extends HttpServlet {
                     req.getRequestDispatcher("/message.jsp").forward(req,resp);
                 }else{
                     resp.sendRedirect("login.jsp?message=password_error");
+                    return;
                 }
             }
         }
         resp.sendRedirect("login.jsp?message=login_error");
+        return;
     }
 }
