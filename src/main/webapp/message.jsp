@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Success</title>
 </head>
-<body>
+<body background="http://www.demo.amitjakhu.com/login-form/images/bg.png">
 
 <%
     request.setCharacterEncoding("UTF-8");

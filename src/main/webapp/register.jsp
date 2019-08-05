@@ -144,7 +144,7 @@
 
     </script>
 </head>
-<body>
+<body background="http://www.demo.amitjakhu.com/login-form/images/bg.png">
 <div class="div_form">
     <font color="red"> ${message}</font>
 <form action="${pageContext.request.contextPath}/RegisterServlet" method="post" onsubmit="return submitTest()" >

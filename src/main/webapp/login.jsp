@@ -32,8 +32,8 @@
     </div>
 
     <div class="footer">
-        <a href="register.jsp" class="button1">Register</a>
-        <input type="submit" class="button2" value="Login">
+        <a href="register.jsp" class="button2">Register</a>
+        <input type="submit" class="button1" value="Login">
     </div>
 
 </form>
