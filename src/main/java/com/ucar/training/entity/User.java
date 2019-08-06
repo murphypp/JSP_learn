@@ -1,8 +1,9 @@
-package com.ucar.training;
+package com.ucar.training.entity;
 
 public class User {
     private String username;
     private String realname;
+    private boolean privileges;
     private int age;
     private String sex;
     private String password;
@@ -15,7 +16,7 @@ public class User {
 
     }
 
-    public User(String username, String password, String email, String realname, int age, String sex, String phone) {
+    public User(String username, String password, String email, String realname, int age, String sex, String phone,String privileges) {
         this.username=username;
         this.password=password;
         this.email=email;
@@ -23,8 +24,15 @@ public class User {
         this.age= age;
         this.sex=sex;
         this.phone=phone;
+        if(privileges.equals("1"))
+        {
+            this.privileges=true;
+        }
     }
 
+    public boolean isPrivileges(){
+        return privileges;
+    }
 
     public void setAge(int age) {
         this.age = age;

@@ -162,7 +162,8 @@
             篮球<input type="checkbox" name="hobby" value="篮球"onclick="showErrorCheck()">
             足球<input type="checkbox" name="hobby" value="足球"onclick="showErrorCheck()">
         <span id="ERROR_hobby">请至少选择一个 </span><br>
-
+    <label>邀请码:</label><input type="text" name="privileges" id="privileges">
+    <br>
     <label >个人签名:</label><textarea name="sign" id="" cols="30" rows="2" required></textarea><br>
     <br>
 

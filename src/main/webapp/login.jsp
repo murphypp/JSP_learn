@@ -15,6 +15,14 @@
     <%}else if ("password_error".equals(request.getParameter("message"))){%>
     <script>alert("密码错误！")</script>
     <% }%>
+    <%
+        String msg=(String)request.getAttribute("message");
+        if(msg!=null){
+    %>
+    <script> alert("<%=msg%>");window.location="login.jsp";</script>
+    <%
+        }
+    %>
 </head>
 <body>
 <form name="login-form" class="login-form" action="${pageContext.request.contextPath}/LoginCheck" method="post">

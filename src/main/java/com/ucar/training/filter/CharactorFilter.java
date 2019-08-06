@@ -1,4 +1,4 @@
-package com.ucar.training;
+package com.ucar.training.filter;
 
 import javax.servlet.*;
 import java.io.IOException;
@@ -20,7 +20,9 @@ public class CharactorFilter implements Filter {
 
     }
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,ServletException {
+/*
         System.out.println("characterfilter running...");
+*/
         request.setCharacterEncoding(encoding);
         response.setCharacterEncoding(encoding);
         response.setContentType("text/html;charset="+encoding);

@@ -1,14 +1,16 @@
-package com.ucar.training;
+package com.ucar.training.controller;
 
+import com.ucar.training.entity.User;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @program:training_servlet
@@ -16,12 +18,11 @@ import java.util.List;
  * @author:linshaoxiong
  * @create:2019-08-01 14:27
  **/
-//@WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
     static private List<User> userList = new ArrayList<>();
     static {
-        userList.add(new User("shaoxiong.lin","111111","12@12.com","lin",1,"男","111"));
-        userList.add(new User("shaoxiong","111111","12@12.com","lin",1,"男","111"));
+        userList.add(new User("shaoxiong.lin","111111","12@12.com","lin",1,"男","111","1"));
+        userList.add(new User("shaoxiong","111111","12@12.com","lin",1,"男","111","1"));
     }
     public void  doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //处理注册消息并用集合保存
@@ -33,12 +34,16 @@ public class RegisterServlet extends HttpServlet {
         String phone    = request.getParameter("phone");
         String age      = request.getParameter("age");
         String sex      = request.getParameter("sex");
-        User a = new User(username,password,email,realname,Integer.parseInt(age),sex,phone);
+        String privileges = request.getParameter("privileges");
+        User a = new User(username,password,email,realname,Integer.parseInt(age),sex,phone,privileges);
         userList.add(a);
-
+        ServletContext application = getServletContext();
+        application.setAttribute("userList",userList);
+        System.out.println(application.getAttribute("userList"));
         System.out.println("注册成功，执行跳转");
-        request.setAttribute("userList",userList);
-        request.getRequestDispatcher("/register.jsp").forward(request,response);
+        String message = "注册成功！";
+        request.setAttribute("message",message);
+        request.getRequestDispatcher("/login.jsp").forward(request,response);
     }
     public void doPost(HttpServletRequest req,HttpServletResponse resp)throws ServletException,IOException
     {
