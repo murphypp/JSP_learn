@@ -60,6 +60,7 @@
         <td>电话号码</td>
         <td>年龄</td>
         <td>性别</td>
+        <td>权限</td>
         <td>邮箱</td>
     </tr>
     <C:forEach items="${applicationScope.userList}" var="h">
@@ -71,6 +72,7 @@
             <td>${h.phone}</td>
             <td>${h.age}</td>
             <td>${h.sex}</td>
+            <td>${h.privileges}</td>
             <td>${h.email}</td>
         </tr>
         </C:if>

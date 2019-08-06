@@ -21,6 +21,7 @@ public class DeleteUploadedFile extends HttpServlet {
         String message="删除失败！";
         File deleteFile = new File(path);
         if(deleteFile.exists()){
+            System.out.println("文件存在，正在删除...");
             if(deleteFile.delete())
                 message="删除成功！";
         }

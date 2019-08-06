@@ -85,7 +85,7 @@ public class UploadFile extends HttpServlet {
                     fileName=fileName.substring(fileName.lastIndexOf("\\")+1);
                     //文件扩展名
                     String fileExtName= fileName.substring(fileName.lastIndexOf(".")+1);
-                    System.out.println("上传文件的扩展名是："+fileExtName);
+                    //System.out.println("上传文件的扩展名是："+fileExtName);
                     //获取item中的上传输入流
                     BufferedInputStream bis = new BufferedInputStream(item.getInputStream());
                     //得到文件保存的名称

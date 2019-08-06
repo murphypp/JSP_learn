@@ -33,6 +33,7 @@ public class DownloadFile extends HttpServlet {
             out.write(bt,0,length);
         }
         out.close();
+        fis.close();
     }
 
     @Override
