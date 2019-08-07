@@ -3,14 +3,28 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML>
 <html>
-  <head>
+<head>
     <title>首页</title>
-     <script type="text/javascript">
+</head>
+<script type="text/javascript">
 
-    </script>
-  </head>
-  
-  <body>
-	<h1>神州优车训练营网站</h1>
+</script>
+<style type="text/css">
+    body{
+        background: url("images/indexbg.jpg");
+    }
+    .action{
+        position: relative;
+        left: 20%;
+        top: 50px;
+    }
+</style>
+<body>
+<div class="action">
+    <p><a href="register.jsp" target="_blank">用户注册</a></p>
+    <p><a href="login.jsp" target="_blank">登录</a></p>
+    <p><a href="${pageContext.request.contextPath}/listFile" target="_blank">文件上传下载</a></p>
+</div>
+
 </body>
 </html>
