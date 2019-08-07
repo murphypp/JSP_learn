@@ -11,6 +11,18 @@
     <filter-name>encoding</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <filter>
+    <filter-name>message</filter-name>
+    <filter-class>com.ucar.training.controller.MessageFilter</filter-class>
+    <init-param>
+      <param-name>badWords</param-name>
+      <param-value>草,日了,妈的,wdnmd</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>message</filter-name>
+    <url-pattern>/addMessage</url-pattern>
+  </filter-mapping>
   
   <servlet>
     <servlet-name>userRegist</servlet-name>

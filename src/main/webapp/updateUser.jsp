@@ -62,7 +62,7 @@
     </c:if>
     <c:forEach var="user" items="${users}">
     <c:if test="${user.username eq param.userid}">
-    <form id="regisform" action="${pageContext.request.contextPath}/updateUser" method="post"  onsubmit="return check()&confirm('确认修改？')">
+    <form id="regisform" action="${pageContext.request.contextPath}/updateUser" method="post"  onsubmit="return check()&&confirm('确认修改？')">
         <input hidden value="register" type="hidden" name="source">
         <div class="input">
             <span>用户名：       </span>
