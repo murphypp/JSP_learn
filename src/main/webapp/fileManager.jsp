@@ -12,8 +12,9 @@
 <html>
 <head>
     <title>Title</title>
-    <link href="fileManager.css" rel="stylesheet" type="text/css" />
+    <link href="table.css" rel="stylesheet" type="text/css" />
 </head>
+
 <%
     String msg=(String)request.getAttribute("message");
     if(msg!=null){
@@ -24,6 +25,8 @@
 %>
 
 <body>
+<body background="http://www.demo.amitjakhu.com/login-form/images/bg.png">
+
 <div class="form-horizontal" ng-controller="castRoles.controller">
     <h2></h2>
 

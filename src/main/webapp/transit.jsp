@@ -14,7 +14,7 @@
 
 <a href="userinfo.jsp">查看用户信息</a>
 <a href="fileManager.jsp">文件管理</a>
-<a href="">用户留言</a>
+<a href="guestBook.jsp">用户留言</a>
 
 
 </body>

@@ -8,7 +8,7 @@
 body {
     overflow: auto;
     width: auto;
-    padding: 30px;
+    padding: 50px;
 }
 
 html {
@@ -28,7 +28,7 @@ html {
 }
 
 .addTable td{
-    padding: 10px;
+    padding: 20px;
 }
 
 .addTable input{
@@ -40,7 +40,7 @@ html {
     background: white;
     padding: 15px 20px;
     border: 1px solid #ccc;
-    max-width: 700px;
+    max-width: 1000px;
 }
 
 .listTable table {
@@ -52,6 +52,7 @@ html {
 }
 
 .listTable th {
+    white-space: nowrap;
     text-align: left;
     border-bottom: 3px solid #ddd;
     padding: 20px;
@@ -59,7 +60,8 @@ html {
 }
 
 .listTable td {
-    padding: 7px 10px;
+    white-space:nowrap;
+    padding: 10px 15px;
     border-bottom: 1px solid #ddd;
 }
 

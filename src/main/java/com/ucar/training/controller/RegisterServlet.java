@@ -21,9 +21,10 @@ import java.util.concurrent.TimeUnit;
 public class RegisterServlet extends HttpServlet {
     static private List<User> userList = new ArrayList<>();
     static {
+        System.out.println("静态代码块初始化");
         userList.add(new User("admin","admin","12@12.com","lin",1,"男","111","1"));
-        userList.add(new User("shaoxiong.lin","111111","12@12.com","lin",1,"男","111","1"));
-        userList.add(new User("shaoxiong","111111","12@12.com","lin",1,"男","111","1"));
+        userList.add(new User("shaoxiong.lin","111111","12@12.com","lin",1,"男","111","0"));
+        userList.add(new User("shaoxiong","111111","12@12.com","lin",1,"男","111","0"));
     }
     public void  doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //处理注册消息并用集合保存

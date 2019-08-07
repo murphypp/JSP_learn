@@ -6,8 +6,26 @@
 
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
-    <welcome-file>register.jsp</welcome-file>
   </welcome-file-list>
+
+  <servlet>
+    <servlet-name>ModifyUser</servlet-name>
+    <servlet-class>com.ucar.training.dao.ModifyUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyUser</servlet-name>
+    <url-pattern>/ModifyUser</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>DeleteUser</servlet-name>
+    <servlet-class>com.ucar.training.dao.DeleteUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteUser</servlet-name>
+    <url-pattern>/DeleteUser</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <servlet-name>DeleteUploadedFile</servlet-name>
