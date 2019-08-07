@@ -68,13 +68,24 @@
             document.getElementById("show").click();
         }
         render() {
-            return (
-                React.createElement("div", null,
-                    React.createElement("h4", { className: "text-center" }, "留言内容"), React.createElement("hr", null),
-                    React.createElement(InfoList, { info: this.props.info }),
-                    React.createElement(ButtonToolbar, null,
-                        React.createElement(Button, { class: "delete", bsStyle: "danger", id: "btn-del" + this.props.index, onClick: this.remove.bind(this) }, "删除")
+            if(privileges==<%=session.getAttribute("privileges")%>){
+                return (
+                    React.createElement("div", null,
+                        React.createElement("h4", { className: "text-center" }, "留言内容"), React.createElement("hr", null),
+                        React.createElement(InfoList, { info: this.props.info }),
+                        React.createElement(ButtonToolbar, null,
+                            React.createElement(Button, { class: "delete", bsStyle: "danger", id: "btn-del" + this.props.index, onClick: this.remove.bind(this) }, "删除")
                         )));
+            }
+            else {
+                return (
+                    React.createElement("div", null,
+                        React.createElement("h4", { className: "text-center" }, "留言内容"), React.createElement("hr", null),
+                        React.createElement(InfoList, { info: this.props.info })
+                        ));
+            }
+
+
 
 
 
