@@ -16,10 +16,16 @@ public class AddMessageServlet extends HttpServlet {
             throws ServletException, IOException {
         String content = request.getParameter("message");
         String username = (String) request.getSession().getAttribute("current");
-        Message m = new Message(content,username);
+        String warn = (String)request.getAttribute("warning")+"";
         IServiceImpl service = new IServiceImpl();
-        service.addMessage(m);
-        System.out.println("用户" + username + "发布了一条留言");
+        if( warn.equals("")){
+            Message m = new Message(content,username);
+            service.addMessage(m);
+            System.out.println("用户" + username + "发布了一条留言");
+        }else {
+            System.out.println("用户"+username+"发布了敏感留言");
+        }
+
         request.setAttribute("count",service.getUserMessages(username).size());
         request.getRequestDispatcher("leaveMessage.jsp").forward(request,response);
     }

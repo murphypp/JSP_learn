@@ -23,7 +23,7 @@ public class ViewMessagesServlet extends HttpServlet {
         IServiceImpl service = new IServiceImpl();
         List<Message> messages ;
         System.out.println("查看留言板："+select);
-        if(select.equals("all")){
+        if("all".equals(select)){
             messages = service.getAllMessage();
         }else {
             messages = service.getUserMessages(select);

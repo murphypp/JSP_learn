@@ -1,6 +1,7 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.dao.impl.IUserImpl;
+import com.ucar.training.entity.User;
 import com.ucar.training.service.IService;
 import com.ucar.training.service.impl.IServiceImpl;
 
@@ -11,11 +12,14 @@ public class ContextListener implements ServletContextListener, ServletContextAt
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         System.out.println("Context初始化了");
         ServletContext context = servletContextEvent.getServletContext();
-        Object obj =context.getAttribute("allUser");
-        if(obj == null){
-            IService service = new IServiceImpl();
-            context.setAttribute("allUser",service.getAllUser());
-        }
+        IService service = new IServiceImpl();
+        User admin = new User("admin1","123456","21","male","sing","233");
+        admin.setAuthority("admin");
+        User user = new User("qqq123","123456","22","female","reading","hhhhhh");
+        service.addUser(admin);
+        service.addUser(user);
+        context.setAttribute("allUser",service.getAllUser());
+
     }
 
     @Override

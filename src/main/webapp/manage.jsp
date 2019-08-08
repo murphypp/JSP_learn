@@ -19,15 +19,17 @@
         position: relative;
         left: 10%;
         top: 20px;
+        right: 10%;
     }
     table,th,td{
         border:solid 1px black;
     }
     th,td{
-        width: 100px;
-    }
-    td{
+        width: 180px;
         text-align: center;
+    }
+    tr{
+        height: 65px;
     }
 </style>
 <script type="text/javascript">
@@ -71,11 +73,15 @@
                         <td>${user.sign}</td>
                         <td>
                             <c:if test="${user.authority ne 'admin'}">
-                                <form action="${pageContext.request.contextPath}/deleteUser" method="post">
+                                <form action="${pageContext.request.contextPath}/deleteUser" method="post"
+                                      onsubmit="return confirm('确定删除？删除后无法恢复')" >
                                     <input type="hidden" name="deleted" value="${user.username}">
-                                    <input type="submit" onsubmit="return confirm('确定删除？删除后无法恢复')" value="删除">
+                                    <input type="submit"value="删除">
                                 </form>
-                                <a href="updateUser.jsp?userid=${user.username}"><button value="修改信息" onclick="">修改信息</button></a>
+                                <a href="updateUser.jsp?userid=${user.username}"><button value="修改信息">修改信息</button></a>
+                            </c:if>
+                            <c:if test="${user.authority eq 'admin'}">
+                                <a href="updateUser.jsp?userid=${user.username}"><button value="修改信息">修改信息</button></a>
                             </c:if>
                         </td>
                     </tr>

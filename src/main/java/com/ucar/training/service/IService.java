@@ -28,7 +28,10 @@ public interface IService {
      * 获得指定用户的信息
      */
     User getUser(String username);
-
+    /**
+     * 获得用户的登录权限
+     */
+    int getPass(String username, String password);
     //留言板
     /**
      * 添加留言

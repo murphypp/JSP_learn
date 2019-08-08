@@ -24,16 +24,15 @@ public class UserAjaxServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         String username = request.getParameter("username");
-        Set<User> all = new IServiceImpl().getAllUser();
+        IServiceImpl service = new IServiceImpl();
+        User u = service.getUser(username);
         PrintWriter out= response.getWriter();
-        for(User x: all){
-            if (username.equals(x.getUsername())){
-                out.print("1");
-                out.flush();
-            }
+        if(u == null){
+            out.print("0");
+            out.flush();
             return;
         }
-        out.print("0");
+        out.print("1");
         out.flush();
     }
 }

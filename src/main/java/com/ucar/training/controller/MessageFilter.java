@@ -15,15 +15,13 @@ public class MessageFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         String message = servletRequest.getParameter("message");
-        boolean result = isContain(message);
-        if (result){
-            HttpServletRequest request =
-                    (HttpServletRequest)servletRequest;
-            HttpServletResponse response =
-                    (HttpServletResponse) servletResponse;
-            request.setAttribute("warning","包含禁用词汇");
-            servletRequest.getRequestDispatcher("addMessage").forward(request,response);
+        servletRequest.setAttribute("warning","");
+
+        if (isContain(message)){
+            servletRequest.setAttribute("warning","包含禁用词汇");
         }
+
+        filterChain.doFilter(servletRequest,servletResponse);
     }
 
     @Override

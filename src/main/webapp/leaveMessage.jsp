@@ -53,6 +53,8 @@
             </label>
             <br/>
             <input type="submit" class="submit" value="发布">
+            <%--@elvariable id="warning" type="java.lang.String"--%>
+            <span>${warning}</span>
         </form>
     </div>
 </div>

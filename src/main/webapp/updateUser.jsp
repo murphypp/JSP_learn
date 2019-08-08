@@ -62,7 +62,8 @@
     </c:if>
     <c:forEach var="user" items="${users}">
     <c:if test="${user.username eq param.userid}">
-    <form id="regisform" action="${pageContext.request.contextPath}/updateUser" method="post"  onsubmit="return check()&&confirm('确认修改？')">
+    <form  action="${pageContext.request.contextPath}/updateUser" method="post"
+           onsubmit="return confirm('确认修改？')">
         <input hidden value="register" type="hidden" name="source">
         <div class="input">
             <span>用户名：       </span>
@@ -88,7 +89,7 @@
         <div >
             <span>爱好：          </span>
             <input type="checkbox" name="likes" value="sing">唱歌
-            <input type="checkbox" name="likes" value="reading">看书
+            <input type="checkbox" name="likes" value="reading" checked>看书
             <input type="checkbox" name="likes" value="playing">游戏
             <input type="checkbox" name="likes" value="sports">户外运动
             <span class="false" id="likesFalse"></span>

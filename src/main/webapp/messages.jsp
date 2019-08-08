@@ -23,10 +23,8 @@
     table,th,td{
         border:solid 1px black;
     }
-    th,td{
-        width: 100px;
-    }
     td{
+        height: 65px;
         text-align: center;
     }
 </style>
@@ -46,17 +44,14 @@
         <table style="border-collapse: collapse">
             <tr>
                 <th>留言者</th>
-                <th>留言信息</th>
-                <th>留言时间</th>
+                <th style="width: 250px;">留言信息</th>
+                <th style="width: 200px;">留言时间</th>
                 <th>操作</th>
             </tr>
             <c:forEach items="${allMessages}" var="message">
                 <tr>
                 <td>
-                    <form method="post" action="${pageContext.request.contextPath}/viewMessages">
-                        <input hidden type="hidden" name="select" value="${message.author}">
-                        <input type="submit" value="${message.author}">
-                    </form>
+                    <a href="${pageContext.request.contextPath}/viewMessages?select=${message.author}" style="color: black">${message.author}</a>
                 </td>
                 <td>${message.content}</td>
                 <td>${message.time}</td>

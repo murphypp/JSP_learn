@@ -51,6 +51,20 @@ public class IServiceImpl implements IService {
     }
 
     @Override
+    public int getPass(String username, String password) {
+        User u = getUser(username);
+        if(u !=null && u.getUsername().equals(username)){
+            if(u.getPassword().equals(password)){
+                if(u.getAuthority().equals("admin")){
+                    return 2;
+                }
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    @Override
     public void addMessage(Message m) {
         iMessage.add(m);
     }
