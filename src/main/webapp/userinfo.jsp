@@ -60,7 +60,7 @@
 
         </C:forEach>
     </table>
-    <a href="${pageContext.request.contextPath}/transit.jsp" class="btn btn-success">返回</a>
+    <a href="${pageContext.request.contextPath}/transit.jsp" class="btn btn-success" >返回</a>
 </div>
 
 

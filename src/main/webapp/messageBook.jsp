@@ -10,9 +10,10 @@
 <body>
 <div class="container">
     <h1>留言板</h1>
+
     <div id="app"></div>
+    <a href="${pageContext.request.contextPath}/transit.jsp" class="btn btn-success" style="float:right">返回</a>
     <div id="button"></div>
-    <a href="${pageContext.request.contextPath}/transit.jsp" class="btn btn-success">返回</a>
 </div>
 
 <script>

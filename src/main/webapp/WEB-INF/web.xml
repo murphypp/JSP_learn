@@ -95,6 +95,24 @@
 
   <!-- 过滤器声明 -->
   <filter>
+    <filter-name>WordFilter</filter-name>
+    <filter-class>com.ucar.training.filter.WordFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>WordFilter</filter-name>
+    <url-pattern>/messageBook</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>com.ucar.training.filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
     <filter-name>CharactorFilter</filter-name>
     <filter-class>com.ucar.training.filter.CharactorFilter</filter-class>
     <init-param>
