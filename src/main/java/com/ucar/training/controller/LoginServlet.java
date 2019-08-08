@@ -1,10 +1,7 @@
 package com.ucar.training.controller;
 
 
-import com.ucar.training.dao.impl.IUserImpl;
-import com.ucar.training.entity.User;
-import com.ucar.training.service.IService;
-import com.ucar.training.service.impl.IServiceImpl;
+import com.ucar.training.service.impl.IUserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Set;
 
 public class LoginServlet extends HttpServlet {
 
@@ -27,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 
         String username = request.getParameter("username") + "";
         String password = request.getParameter("password") + "";
-        IServiceImpl service = new IServiceImpl();
+        IUserServiceImpl service = new IUserServiceImpl();
         /*
           flag = 0 ->登录失败
           flag = 1 ->登录成功。是普通用户
@@ -39,7 +35,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println("用户"+username+"成功登录!");
             HttpSession session = request.getSession();
             session.setAttribute("current",username);
-            request.getRequestDispatcher("leaveMessage.jsp").forward(request,response);
+            request.getRequestDispatcher("addMessage").forward(request,response);
         }else if(flag == 2){
             System.out.println("管理员成功登录：" + username);
             HttpSession session = request.getSession();

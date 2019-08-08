@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--
   Created by IntelliJ IDEA.
   User: EDZ
@@ -72,14 +73,10 @@
         </div>
         <div>
             <span>性别：         </span>
-            <c:if test="${user.sex eq 'male'}">
-                <input type="radio" name="sex" value="male" checked>男
-                <input type="radio" name="sex" value="female">女
-            </c:if>
-            <c:if test="${user.sex eq 'female'}">
-                <input type="radio" name="sex" value="male" >男
-                <input type="radio" name="sex" value="female" checked>女
-            </c:if>
+                <input type="radio" name="sex" value="male"
+                       <c:if test="${user.sex eq 'male'}">checked</c:if>>男
+                <input type="radio" name="sex" value="female"
+                       <c:if test="${user.sex eq 'female'}">checked</c:if>>女
         </div>
         <div class="input">
             <span>年龄：         </span>
@@ -88,10 +85,14 @@
         </div>
         <div >
             <span>爱好：          </span>
-            <input type="checkbox" name="likes" value="sing">唱歌
-            <input type="checkbox" name="likes" value="reading" checked>看书
-            <input type="checkbox" name="likes" value="playing">游戏
-            <input type="checkbox" name="likes" value="sports">户外运动
+            <input type="checkbox" name="likes" value="sing"
+                   <c:if test="${fn:contains(user.likes,'sing')}">checked</c:if> >唱歌
+            <input type="checkbox" name="likes" value="reading"
+                   <c:if test="${fn:contains(user.likes,'reading')}">checked</c:if>>看书
+            <input type="checkbox" name="likes" value="playing"
+                   <c:if test="${fn:contains(user.likes,'playing')}">checked</c:if>>游戏
+            <input type="checkbox" name="likes" value="sports"
+                   <c:if test="${fn:contains(user.likes,'sports')}">checked</c:if>>户外运动
             <span class="false" id="likesFalse"></span>
         </div>
         <div class="input">

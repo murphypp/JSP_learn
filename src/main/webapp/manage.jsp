@@ -21,6 +21,12 @@
         top: 20px;
         right: 10%;
     }
+    .click{
+        background: paleturquoise;
+        border-radius: 10px;
+        width: 120px;
+        height: 30px;
+    }
     table,th,td{
         border:solid 1px black;
     }
@@ -42,12 +48,12 @@
         <div>
             <%--@elvariable id="current" type="java.lang.String"--%>
             <h2>您是管理员：${current}</h2>
-            <form method="post" action="${pageContext.request.contextPath}/viewMessages" target="_blank">
-                <input hidden type="hidden" name="select" value="all">
-                <input type="submit" value="查看留言板">
-            </form>
+                <a href="${pageContext.request.contextPath}/viewMessages?select=" target="_blank">
+                    <button class="click">查看留言板</button>
+                </a>
+                <a href="addUser.jsp" target="_blank"><button  class="click">添加普通用户</button></a>
+                <a href="login.jsp"><button  class="click">退出登录</button></a>
         </div>
-        <h2><a href="addUser.jsp" target="_blank"><button >增加普通用户</button></a> </h2>
         <%--@elvariable id="tip" type="java.lang.String"--%>
         <c:if test="${tip ne null}">
             <h3>${tip}</h3>

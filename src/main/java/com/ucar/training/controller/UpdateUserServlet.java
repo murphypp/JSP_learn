@@ -1,7 +1,7 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.entity.User;
-import com.ucar.training.service.impl.IServiceImpl;
+import com.ucar.training.service.impl.IUserServiceImpl;
 import com.ucar.training.utils.UserUtil;
 
 import javax.servlet.ServletException;
@@ -20,7 +20,8 @@ public class UpdateUserServlet extends HttpServlet {
          String[] allLikes = request.getParameterValues("likes");
          String likes = UserUtil.getUserLikes(allLikes);
          String sign = request.getParameter("area");
-         IServiceImpl service = new IServiceImpl();
+
+         IUserServiceImpl service = new IUserServiceImpl();
          User user  = service.getUser(username);
          user.setSex(sex);
          user.setSign(sign);

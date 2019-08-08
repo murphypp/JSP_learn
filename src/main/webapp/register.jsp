@@ -182,6 +182,7 @@ function EnsurePasswd() {
 <body style="background: aliceblue url('images/indexbg.jpg')" >
 <div class="register">
     <h1>用户注册</h1>
+    <h4><a href="login.jsp">已有账号？点击前往登录</a></h4>
     <%--@elvariable id="tip" type="java.lang.String"--%>
     <c:if test="${tip ne null}">
         <h3>${tip}</h3>

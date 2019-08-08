@@ -1,17 +1,14 @@
 package com.ucar.training.controller;
 
-import com.ucar.training.dao.impl.IUserImpl;
 import com.ucar.training.entity.User;
-import com.ucar.training.service.impl.IServiceImpl;
+import com.ucar.training.service.impl.IUserServiceImpl;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Set;
 
 public class UserAjaxServlet extends HttpServlet {
     @Override
@@ -24,7 +21,7 @@ public class UserAjaxServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         String username = request.getParameter("username");
-        IServiceImpl service = new IServiceImpl();
+        IUserServiceImpl service = new IUserServiceImpl();
         User u = service.getUser(username);
         PrintWriter out= response.getWriter();
         if(u == null){

@@ -1,4 +1,4 @@
-package com.ucar.training.controller;
+package com.ucar.training.filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +13,10 @@ public class MessageFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest,
+                         ServletResponse servletResponse,
+                         FilterChain filterChain)
+            throws IOException, ServletException {
         String message = servletRequest.getParameter("message");
         servletRequest.setAttribute("warning","");
 

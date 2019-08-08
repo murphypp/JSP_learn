@@ -25,6 +25,12 @@
         height: 100px;
         scroll-behavior: smooth;
     }
+    .click{
+        background: paleturquoise;
+        border-radius: 10px;
+        width: 120px;
+        height: 30px;
+    }
     .submit{
         background: #3f89ec;
         border-radius: 10px;
@@ -37,6 +43,7 @@
 <div>
     <%--@elvariable id="current" type="java.lang.String"--%>
     <h1>欢迎登录：${current}</h1>
+    <a href="login.jsp"><button class="click">退出登录</button></a>
     <div class="leaveMessage">
         <h3>这里是留言板，您可以在这里留言</h3>
         <%--@elvariable id="count" type="int"--%>

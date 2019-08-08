@@ -2,7 +2,6 @@ package com.ucar.training.dao.impl;
 
 import com.ucar.training.dao.IUser;
 import com.ucar.training.entity.User;
-import sun.dc.pr.PRError;
 
 import java.util.HashSet;
 import java.util.Set;

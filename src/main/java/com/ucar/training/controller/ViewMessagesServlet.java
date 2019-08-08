@@ -1,7 +1,7 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.entity.Message;
-import com.ucar.training.service.impl.IServiceImpl;
+import com.ucar.training.service.impl.IMessageServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,13 +19,12 @@ public class ViewMessagesServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String select = request.getParameter("select");
-        IServiceImpl service = new IServiceImpl();
-        List<Message> messages ;
-        System.out.println("查看留言板："+select);
-        if("all".equals(select)){
-            messages = service.getAllMessage();
-        }else {
+        String select = request.getParameter("select") +"";
+
+        IMessageServiceImpl service = new IMessageServiceImpl();
+        List<Message> messages = service.getAllMessage();
+        System.out.println("查看留言板："+select +1);
+        if(!"".equals(select)){
             messages = service.getUserMessages(select);
         }
 

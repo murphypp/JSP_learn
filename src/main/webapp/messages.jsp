@@ -19,6 +19,10 @@
         position: relative;
         left: 10%;
         top: 20px;
+        width: 550px;
+    }
+    .action{
+        width: 550px;
     }
     table,th,td{
         border:solid 1px black;
@@ -31,13 +35,16 @@
 <body>
 
 <div class="messages">
-    <div>
-        <h2>
+    <div class="action">
+        <div>
             <form method="post" action="${pageContext.request.contextPath}/viewMessages">
-                <input hidden type="hidden" name="select" value="all">
+                <input hidden type="hidden" name="select" >
                 <input type="submit" value="全部留言">
             </form>
-        </h2>
+        </div>
+        <div style="text-align: left">
+            <button onclick="window.close()">退出</button>
+        </div>
     </div>
     <%--@elvariable id="allMessages" type="java.util.List<com.ucar.training.entity.Message>"--%>
     <c:if test="${allMessages ne null}">
