@@ -12,7 +12,7 @@
 <html>
 <head>
     <title>register</title>
-    <link href="register.css" rel="stylesheet" type="text/css" />
+    <link href="style/register.css" rel="stylesheet" type="text/css" />
     <script>
         //定义全局不可提交变量
         var flag=1;

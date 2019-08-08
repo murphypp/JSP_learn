@@ -45,7 +45,7 @@ public class LoginCheck extends HttpServlet {
                     System.out.println("已经记录context:"+context.getAttribute("userList"));
                     //跳转登录成功页面
                     //req.setAttribute("userList",userList);
-                    req.getRequestDispatcher("/transit.jsp").forward(req,resp);
+                    req.getRequestDispatcher("transit.jsp").forward(req,resp);
                     //resp.sendRedirect("transit.jsp");
                 }else{
                     resp.sendRedirect("login.jsp?message=password_error");

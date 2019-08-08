@@ -3,19 +3,26 @@
 <html lang="en" >
 <head>
     <meta charset="UTF-8">
-    <title>Event</title>
+    <title>MessageBook</title>
+    <link href="style/table.css" rel="stylesheet" type="text/css" />
     <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
 </head>
 <body>
-<!-- partial:index.partial.html -->
 <div class="container">
     <h1>留言板</h1>
     <div id="app"></div>
     <div id="button"></div>
+    <a href="${pageContext.request.contextPath}/transit.jsp" class="btn btn-success">返回</a>
 </div>
+
 <script>
     var privileges=true;
-    alert(privileges==<%=session.getAttribute("privileges")%>)
+    var message="";
+    if(privileges==<%=session.getAttribute("privileges")%>)
+        message="欢迎管理员用户！"
+    else
+        message="普通用户只能留言和查看留言!"
+    alert(message)
 
 </script>
 
@@ -50,8 +57,6 @@
                 React.createElement("div", null,
                     React.createElement(Accordion, null,
                         this.props.data)));
-
-
 
         }}
 
@@ -168,7 +173,7 @@
 
                         React.createElement(Modal.Body, null,
                             React.createElement("form", null,
-                                React.createElement(Input, { type: "text", label: "姓名", placeholder: "请输入姓名", id: "title" }),
+                                React.createElement(Input, { type: "text", label: "标题", placeholder: "请输入姓名", id: "title" }),
                                 React.createElement(Input, { type: "textarea", label: "留言内容", placeholder: "请输入留言内容", id: "info" }))),
 
 

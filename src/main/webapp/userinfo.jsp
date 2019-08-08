@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Success</title>
-    <link href="table.css" rel="stylesheet" type="text/css" />
+    <link href="style/table.css" rel="stylesheet" type="text/css" />
 </head>
 <body background="http://www.demo.amitjakhu.com/login-form/images/bg.png">
 
@@ -52,7 +52,7 @@
                     <td>${h.password}</td>
                     <td>${h.email}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/modify.jsp" class="btn btn-inverse">Modify</a>
+                        <a href="${pageContext.request.contextPath}/modify.jsp?username=${h.username}" class="btn btn-inverse">Modify</a>
                     </td>
                 </tr>
                </C:if>
@@ -60,6 +60,7 @@
 
         </C:forEach>
     </table>
+    <a href="${pageContext.request.contextPath}/transit.jsp" class="btn btn-success">返回</a>
 </div>
 
 

@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>login</title>
-    <link href="login.css" rel="stylesheet" type="text/css" />
+    <link href="style/login.css" rel="stylesheet" type="text/css" />
     <%if("login_error".equals(request.getParameter("message"))){ %>
     <script>alert("请先注册！");</script>
     <%}else if ("password_error".equals(request.getParameter("message"))){%>

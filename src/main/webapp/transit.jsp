@@ -9,13 +9,17 @@
 <html>
 <head>
     <title>transit </title>
+    <link href="style/table.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body >
 
-<a href="userinfo.jsp">查看用户信息</a>
-<a href="fileManager.jsp">文件管理</a>
-<a href="guestBook.jsp">用户留言</a>
+<div style="text-align: center;margin: auto;">
 
+    <a href="${pageContext.request.contextPath}/userinfo.jsp" class="btn btn-success">用户信息</a>
+    <a href="${pageContext.request.contextPath}/fileManager.jsp" class="btn btn-success">文件管理</a>
+    <a href="${pageContext.request.contextPath}/messageBook.jsp" class="btn btn-success">留言板</a>
+
+</div>
 
 </body>
 </html>

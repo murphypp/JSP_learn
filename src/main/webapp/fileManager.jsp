@@ -12,7 +12,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link href="table.css" rel="stylesheet" type="text/css" />
+    <link href="style/table.css" rel="stylesheet" type="text/css" />
 </head>
 
 <%
@@ -66,6 +66,7 @@
         </div>
 
     </form>
+    <a href="${pageContext.request.contextPath}/transit.jsp" class="btn btn-success">返回</a>
 </div>
 
 
