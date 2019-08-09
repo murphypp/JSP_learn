@@ -6,13 +6,69 @@
 
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
-    <welcome-file>register.jsp</welcome-file>
   </welcome-file-list>
+
+  <servlet>
+    <servlet-name>ModifyUser</servlet-name>
+    <servlet-class>com.ucar.training.dao.ModifyUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyUser</servlet-name>
+    <url-pattern>/ModifyUser</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>DeleteUser</servlet-name>
+    <servlet-class>com.ucar.training.dao.DeleteUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteUser</servlet-name>
+    <url-pattern>/DeleteUser</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>DeleteUploadedFile</servlet-name>
+    <servlet-class>com.ucar.training.controller.DeleteUploadedFile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteUploadedFile</servlet-name>
+    <url-pattern>/DeleteUploadedFile</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>DownloadFile</servlet-name>
+    <servlet-class>com.ucar.training.controller.DownloadFile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownloadFile</servlet-name>
+    <url-pattern>/DownloadFile</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>UploadFile</servlet-name>
+    <servlet-class>com.ucar.training.controller.UploadFile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadFile</servlet-name>
+    <url-pattern>/UploadFile</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ListUploadedFiles</servlet-name>
+    <servlet-class>com.ucar.training.controller.ListUploadedFiles</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListUploadedFiles</servlet-name>
+    <url-pattern>/ListUploadedFiles</url-pattern>
+  </servlet-mapping>
+
 
 
   <servlet>
     <servlet-name>RegisterServlet</servlet-name>
-    <servlet-class>com.ucar.training.RegisterServlet</servlet-class>
+    <servlet-class>com.ucar.training.controller.RegisterServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
@@ -21,7 +77,7 @@
 
   <servlet>
     <servlet-name>RegisterCheck</servlet-name>
-    <servlet-class>com.ucar.training.RegisterCheck</servlet-class>
+    <servlet-class>com.ucar.training.controller.RegisterCheck</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RegisterCheck</servlet-name>
@@ -30,7 +86,7 @@
 
   <servlet>
     <servlet-name>LoginCheck</servlet-name>
-    <servlet-class>com.ucar.training.LoginCheck</servlet-class>
+    <servlet-class>com.ucar.training.controller.LoginCheck</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginCheck</servlet-name>
@@ -39,8 +95,26 @@
 
   <!-- 过滤器声明 -->
   <filter>
+    <filter-name>WordFilter</filter-name>
+    <filter-class>com.ucar.training.filter.WordFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>WordFilter</filter-name>
+    <url-pattern>/messageBook</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>com.ucar.training.filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
     <filter-name>CharactorFilter</filter-name>
-    <filter-class>com.ucar.training.CharactorFilter</filter-class>
+    <filter-class>com.ucar.training.filter.CharactorFilter</filter-class>
     <init-param>
       <param-name>CharsetEncoding</param-name>
       <param-value>utf-8</param-value>
@@ -53,7 +127,7 @@
 
 <filter>
 <filter-name>UserFilter</filter-name>
-<filter-class>com.ucar.training.UserFilter</filter-class>
+<filter-class>com.ucar.training.filter.UserFilter</filter-class>
 <init-param>
   <param-name>blackList</param-name>
   <param-value>zhangsan,lisi,wangwu</param-value>
@@ -65,7 +139,7 @@
 </filter-mapping>
 
   <listener>
-    <listener-class>com.ucar.training.ListenerTest</listener-class>
+    <listener-class>com.ucar.training.lister.ListenerContext</listener-class>
   </listener>
 
 </web-app>
