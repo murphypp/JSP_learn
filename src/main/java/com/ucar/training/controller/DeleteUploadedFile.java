@@ -1,4 +1,4 @@
-package com.ucar.training.services;
+package com.ucar.training.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

@@ -31,6 +31,7 @@ public class ModifyUser extends HttpServlet {
                 u.setPhone(req.getParameter("phone"));
                 u.setRealname(req.getParameter("realname"));
                 u.setSex(req.getParameter("sex"));
+                u.setSign(req.getParameter("sign"));
             }
         }
 

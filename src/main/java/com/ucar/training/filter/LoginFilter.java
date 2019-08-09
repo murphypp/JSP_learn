@@ -15,6 +15,10 @@ public class LoginFilter implements Filter {
         HttpSession session = ((HttpServletRequest)req).getSession();
         String username =(String) session.getAttribute("user");
         StringBuffer path = ((HttpServletRequest) req).getRequestURL();
+        if(path.indexOf("/")>-1){
+            chain.doFilter(req, resp);
+            return;
+        }
         if(path.indexOf("/login.jsp")>-1){
             chain.doFilter(req, resp);
             return;
@@ -24,6 +28,14 @@ public class LoginFilter implements Filter {
             return;
         }
         if(path.indexOf("/LoginCheck")>-1){
+            chain.doFilter(req,resp);
+            return;
+        }
+        if(path.indexOf("/RegisterCheck")>-1){
+            chain.doFilter(req,resp);
+            return;
+        }
+        if(path.indexOf("/RegisterServlet")>-1){
             chain.doFilter(req,resp);
             return;
         }

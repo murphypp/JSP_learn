@@ -2,6 +2,7 @@
 <%@ page import="com.ucar.training.entity.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="C"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
     <title>Modify</title>
@@ -117,21 +118,21 @@
     <form action="${pageContext.request.contextPath}/ModifyUser" method="post" onsubmit="return submitTest()" >
         <label >用户名:</label>  <input type="text" name="username" id="username" onblur="showErrorName()" readonly="readonly" placeholder="${h.username}" value="${h.username}" >   <span id="ERROR_name">不可修改</span><br>
         <label >真实姓名:</label> <input type="text" name="realname"   value="${h.realname}"> <br>
-        <label >性别:</label>男<input type="radio" name="sex" value="男" checked>
-        女<input type="radio" name="sex" value="女"> <br>
+        <label >性别:</label>男<input type="radio" name="sex" <C:if test="${h.sex=='男' }">checked="checked"</C:if> value="男" />
+        女<input type="radio" name="sex" value="女"<C:if test="${h.sex=='女' }">checked="checked"</C:if>> <br>
         <label >年龄:</label> <input type="text" name="age" id="age" onchange="showErrorAge()" value="${h.age}"> <span id="ERROR_age">*(为必填)</span> <br>
         <label >密码:</label><input type="password" name="password1" id="password1" onchange="showErrorPassword1()" value="${h.password}"><span id="ERROR_password1">*(为必填)</span><br>
         <label >确认密码:</label><input type="password" name="password2" id="password2" onchange="showErrorPassword2()"value="${h.password}"><span id="ERROR_password2">*(为必填)</span><br>
         <label >电话号码:</label> <input type="text" name="phone"  value="${h.phone}"> <br>
         <label >邮箱地址:</label> <input type="text" name="email" id="email" onchange="showErrorEmail()" value="${h.email}"><span id="ERROR_email">*(为必填)</span><br>
         <label >爱好:</label>
-        写代码<input type="checkbox" name="hobby" value="写代码"onclick="showErrorCheck()">
-        篮球<input type="checkbox" name="hobby" value="篮球"onclick="showErrorCheck()">
-        足球<input type="checkbox" name="hobby" value="足球"onclick="showErrorCheck()">
+        写代码<input type="checkbox" name="hobby" value="写代码"onclick="showErrorCheck()" <C:if test="${fn:contains(h.hobby,'写代码')}"> checked="checked"</C:if> >
+        篮球<input type="checkbox" name="hobby" value="篮球"onclick="showErrorCheck()"<C:if test="${fn:contains(h.hobby,'篮球')}"> checked="checked"</C:if>>
+        足球<input type="checkbox" name="hobby" value="足球"onclick="showErrorCheck()"<C:if test="${fn:contains(h.hobby,'足球')}"> checked="checked"</C:if>>
         <span id="ERROR_hobby">请至少选择一个 </span><br>
         <label>邀请码:</label><input type="text" name="privileges" id="privileges" readonly="readonly"> <span>不可修改</span>
         <br>
-        <label >个人签名:</label><textarea name="sign" id="" cols="30" rows="2" required ></textarea><br>
+        <label >个人签名:</label><textarea name="sign" id="" cols="30" rows="2" required >${h.sign}</textarea><br>
         <br>
 
         <input type="submit" value="修改" class="button_left" > <input type="reset" name="重置" class="button_right" >

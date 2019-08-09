@@ -19,11 +19,10 @@
 %>
 
 
-
 <div class="listTable">
     <table>
         <tr>
-            <th>文件名</th>
+            <th>用户名</th>
             <th>真实姓名</th>
             <th>密码</th>
             <th>邮箱</th>

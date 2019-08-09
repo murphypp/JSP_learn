@@ -29,7 +29,7 @@
 
   <servlet>
     <servlet-name>DeleteUploadedFile</servlet-name>
-    <servlet-class>com.ucar.training.services.DeleteUploadedFile</servlet-class>
+    <servlet-class>com.ucar.training.controller.DeleteUploadedFile</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteUploadedFile</servlet-name>
@@ -38,7 +38,7 @@
 
   <servlet>
     <servlet-name>DownloadFile</servlet-name>
-    <servlet-class>com.ucar.training.services.DownloadFile</servlet-class>
+    <servlet-class>com.ucar.training.controller.DownloadFile</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DownloadFile</servlet-name>
@@ -48,7 +48,7 @@
 
   <servlet>
     <servlet-name>UploadFile</servlet-name>
-    <servlet-class>com.ucar.training.services.UploadFile</servlet-class>
+    <servlet-class>com.ucar.training.controller.UploadFile</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UploadFile</servlet-name>
@@ -57,7 +57,7 @@
 
   <servlet>
     <servlet-name>ListUploadedFiles</servlet-name>
-    <servlet-class>com.ucar.training.services.ListUploadedFiles</servlet-class>
+    <servlet-class>com.ucar.training.controller.ListUploadedFiles</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ListUploadedFiles</servlet-name>
@@ -139,7 +139,7 @@
 </filter-mapping>
 
   <listener>
-    <listener-class>com.ucar.training.filter.ListenerTest</listener-class>
+    <listener-class>com.ucar.training.lister.ListenerContext</listener-class>
   </listener>
 
 </web-app>

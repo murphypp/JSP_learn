@@ -22,9 +22,9 @@ public class RegisterServlet extends HttpServlet {
     static private List<User> userList = new ArrayList<>();
     static {
         System.out.println("静态代码块初始化");
-        userList.add(new User("admin","admin","12@12.com","lin",1,"男","111","1"));
-        userList.add(new User("shaoxiong.lin","111111","12@12.com","lin",1,"男","111","0"));
-        userList.add(new User("shaoxiong","111111","12@12.com","lin",1,"男","111","0"));
+        userList.add(new User("admin","admin","12@12.com","lin",1,"男","111","1","写代码,篮球,足球","123"));
+        userList.add(new User("shaoxiong.lin","111111","12@12.com","lin",1,"男","111","0","篮球,足球","123"));
+        userList.add(new User("shaoxiong","111111","12@12.com","lin",1,"女","111","0","写代码,足球","123"));
     }
     public void  doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //处理注册消息并用集合保存
@@ -37,7 +37,14 @@ public class RegisterServlet extends HttpServlet {
         String age      = request.getParameter("age");
         String sex      = request.getParameter("sex");
         String privileges = request.getParameter("privileges");
-        User a = new User(username,password,email,realname,Integer.parseInt(age),sex,phone,privileges);
+        String[] hobbyList = request.getParameterValues("hobby");
+        String sign = request.getParameter("sign");
+        String hobby="";
+        for(String str:hobbyList){
+            hobby=hobby+","+str;
+        }
+        System.out.println(hobby);
+        User a = new User(username,password,email,realname,Integer.parseInt(age),sex,phone,privileges,hobby,sign);
         userList.add(a);
         ServletContext application = getServletContext();
         application.setAttribute("userList",userList);

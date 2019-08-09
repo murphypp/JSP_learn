@@ -9,14 +9,14 @@ public class User {
     private String password;
     private String phone;
     private String email;
-    private String[] hobby;
+    private String hobby;
     private String sign;
 
     public User() {
 
     }
 
-    public User(String username, String password, String email, String realname, int age, String sex, String phone,String privileges) {
+    public User(String username, String password, String email, String realname, int age, String sex, String phone,String privileges,String hobby,String sign) {
         this.username=username;
         this.password=password;
         this.email=email;
@@ -28,6 +28,8 @@ public class User {
         {
             this.privileges=true;
         }
+        this.hobby=hobby;
+        this.sign=sign;
     }
 
     public boolean isPrivileges(){
@@ -42,7 +44,7 @@ public class User {
         this.email = email;
     }
 
-    public void setHobby(String[] hobby) {
+    public void setHobby(String hobby) {
         this.hobby = hobby;
     }
 
@@ -56,6 +58,10 @@ public class User {
 
     public void setRealname(String realname) {
         this.realname = realname;
+    }
+
+    public String getHobby() {
+        return hobby;
     }
 
     public void setSex(String  sex) {

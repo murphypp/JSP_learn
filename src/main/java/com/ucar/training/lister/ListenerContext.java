@@ -1,4 +1,4 @@
-package com.ucar.training.filter;
+package com.ucar.training.lister;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -9,11 +9,11 @@ import javax.servlet.http.HttpSessionListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 
 @WebListener()
-public class ListenerTest implements ServletContextListener,
+public class ListenerContext implements ServletContextListener,
         HttpSessionListener, HttpSessionAttributeListener {
 
     // Public constructor is required by servlet spec
-    public ListenerTest() {
+    public ListenerContext() {
     }
 
     // -------------------------------------------------------
@@ -24,7 +24,7 @@ public class ListenerTest implements ServletContextListener,
          initialized(when the Web application is deployed). 
          You can initialize servlet context related data here.
       */
-      System.out.println("servlet context is initialized~");
+      System.out.println("servlet context is initialized");
 
     }
 
