@@ -11,6 +11,9 @@ public class Message {
     private String author;
     private String ID;
 
+    public Message(){
+
+    }
     public Message(String content, String author) {
         this.content = content;
         this.author = author;
@@ -45,5 +48,9 @@ public class Message {
     }
 
     public String getID() { return ID; }
+
+    public void setID(String ID){
+        this.ID = ID;
+    }
 
 }

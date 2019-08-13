@@ -4,19 +4,23 @@ package com.ucar.training.entity;
 public class User {
     private String username;
     private String password;
-    private String age;
+    private int age;
     private String sex;
     private String likes;
     private String sign;
     private String authority;
-    public User(String username, String password, String age, String sex, String likes, String sign) {
+
+    public User(){
+
+    }
+    public User(String username, String password,String authority, int age, String sex, String likes, String sign) {
         this.username = username;
         this.password = password;
+        this.authority =authority;
         this.age = age;
         this.sex = sex;
         this.likes = likes;
         this.sign = sign;
-        this.authority = "common";
     }
     @Override
     public int hashCode(){
@@ -58,11 +62,11 @@ public class User {
         this.password = password;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 

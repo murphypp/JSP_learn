@@ -1,13 +1,13 @@
 package com.ucar.training.service.impl;
 
-import com.ucar.training.dao.impl.IMessageImpl;
+import com.ucar.training.dao.impl.MessageDaoImpl;
 import com.ucar.training.entity.Message;
 import com.ucar.training.service.IMessageService;
 
 import java.util.List;
 
-public class IMessageServiceImpl implements IMessageService {
-    private static IMessageImpl iMessage = new IMessageImpl();
+public class MessageServiceImpl implements IMessageService {
+    private static MessageDaoImpl iMessage = new MessageDaoImpl();
     @Override
     public void addMessage(Message m) {
         iMessage.add(m);
@@ -15,13 +15,7 @@ public class IMessageServiceImpl implements IMessageService {
 
     @Override
     public void deleteMessage(String ID) {
-        List<Message> list = iMessage.getAllMessage();
-        for (Message m: list){
-            if (m.getID().equals(ID)){
-                iMessage.delete(m);
-                return;
-            }
-        }
+        iMessage.delete(ID);
     }
 
     @Override
@@ -32,8 +26,6 @@ public class IMessageServiceImpl implements IMessageService {
 
     @Override
     public void deleteUserMessages(String username) {
-        for (Message m: iMessage.getUserMessages(username)){
-            iMessage.delete(m);
-        }
+        iMessage.deleteUserMessages(username);
     }
 }

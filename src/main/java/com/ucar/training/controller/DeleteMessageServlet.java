@@ -1,6 +1,6 @@
 package com.ucar.training.controller;
 
-import com.ucar.training.service.impl.IMessageServiceImpl;
+import com.ucar.training.service.impl.MessageServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +12,7 @@ public class DeleteMessageServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ID = request.getParameter("ID");
-        IMessageServiceImpl service = new IMessageServiceImpl();
+        MessageServiceImpl service = new MessageServiceImpl();
         service.deleteMessage(ID);
 
         request.setAttribute("allMessages",service.getAllMessage());

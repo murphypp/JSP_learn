@@ -1,14 +1,14 @@
 package com.ucar.training.service.impl;
 
 
-import com.ucar.training.dao.impl.IUserImpl;
+import com.ucar.training.dao.impl.UserDaoImpl;
 import com.ucar.training.entity.User;
 import com.ucar.training.service.IUserService;
 
 import java.util.Set;
 
-public class IUserServiceImpl implements IUserService {
-    private static IUserImpl iUser = new IUserImpl();
+public class UserServiceImpl implements IUserService {
+    private static UserDaoImpl iUser = new UserDaoImpl();
 
 
     @Override
@@ -21,7 +21,7 @@ public class IUserServiceImpl implements IUserService {
         for (User u: iUser.getAllUser()
         ) {
             if (username.equals(u.getUsername())){
-                iUser.delete(u);
+                iUser.delete(username);
                 break;
             }
         }
@@ -39,12 +39,7 @@ public class IUserServiceImpl implements IUserService {
 
     @Override
     public User getUser(String username) {
-        for (User x: iUser.getAllUser()){
-            if (x.getUsername().equals(username)){
-                return x;
-            }
-        }
-        return null;
+        return iUser.getUser(username);
     }
 
     @Override

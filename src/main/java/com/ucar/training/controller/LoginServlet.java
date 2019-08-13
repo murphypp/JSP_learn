@@ -1,7 +1,7 @@
 package com.ucar.training.controller;
 
 
-import com.ucar.training.service.impl.IUserServiceImpl;
+import com.ucar.training.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 
         String username = request.getParameter("username") + "";
         String password = request.getParameter("password") + "";
-        IUserServiceImpl service = new IUserServiceImpl();
+        UserServiceImpl service = new UserServiceImpl();
         /*
           flag = 0 ->登录失败
           flag = 1 ->登录成功。是普通用户
@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
             request.getRequestDispatcher("manage.jsp").forward(request,response);
         }
         else {
-            System.out.println("登录失败：不存在的用户名：" + username);
+            System.out.println("登录失败：用户名或密码错误" + username);
             request.setAttribute("warn","用户名或密码错误");
             request.getRequestDispatcher("login.jsp").forward(request,response);
         }

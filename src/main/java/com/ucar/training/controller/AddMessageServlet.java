@@ -1,7 +1,7 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.entity.Message;
-import com.ucar.training.service.impl.IMessageServiceImpl;
+import com.ucar.training.service.impl.MessageServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +16,7 @@ public class AddMessageServlet extends HttpServlet {
         String content = request.getParameter("message");
         String username = (String) request.getSession().getAttribute("current");
         String warn = (String)request.getAttribute("warning")+"";
-        IMessageServiceImpl service = new IMessageServiceImpl();
+        MessageServiceImpl service = new MessageServiceImpl();
         if( warn.equals("")){
             Message m = new Message(content,username);
             service.addMessage(m);

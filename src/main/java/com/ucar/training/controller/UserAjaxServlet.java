@@ -1,7 +1,7 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.entity.User;
-import com.ucar.training.service.impl.IUserServiceImpl;
+import com.ucar.training.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +21,7 @@ public class UserAjaxServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         String username = request.getParameter("username");
-        IUserServiceImpl service = new IUserServiceImpl();
+        UserServiceImpl service = new UserServiceImpl();
         User u = service.getUser(username);
         PrintWriter out= response.getWriter();
         if(u == null){

@@ -4,7 +4,7 @@ import com.ucar.training.entity.Message;
 
 import java.util.List;
 
-public interface IMessage {
+public interface IMessageDao {
     /**
      * 添加一条留言
      * @param m
@@ -13,13 +13,19 @@ public interface IMessage {
     /**
      * 删除一条留言
      */
-    void delete(Message m);
+    void delete(String ID);
     /**
      * 修改留言信息
      */
     List<Message> getAllMessage();
     /**
-     * 获得用户发布的留言数量
+     * 获得用户发布的所有留言
      */
     List<Message> getUserMessages(String username);
+
+    /**
+     * 删除用户所有留言
+     * @param username 用户名
+     */
+    void deleteUserMessages(String  username);
 }

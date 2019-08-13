@@ -1,7 +1,7 @@
 package com.ucar.training.controller;
 
-import com.ucar.training.service.impl.IMessageServiceImpl;
-import com.ucar.training.service.impl.IUserServiceImpl;
+import com.ucar.training.service.impl.MessageServiceImpl;
+import com.ucar.training.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,9 +22,9 @@ public class DeleteUserServlet extends HttpServlet {
         String username = request.getParameter("deleted");
         System.out.println("要删除的用户名：" + username);
 
-        IUserServiceImpl userService = new IUserServiceImpl();
+        UserServiceImpl userService = new UserServiceImpl();
         userService.deleteUser(username);
-        IMessageServiceImpl messageService = new IMessageServiceImpl();
+        MessageServiceImpl messageService = new MessageServiceImpl();
         messageService.deleteUserMessages(username);
 
         this.getServletContext().setAttribute("allUser",userService.getAllUser());

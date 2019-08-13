@@ -2,7 +2,7 @@ package com.ucar.training.controller;
 
 
 import com.ucar.training.entity.User;
-import com.ucar.training.service.impl.IUserServiceImpl;
+import com.ucar.training.service.impl.UserServiceImpl;
 import com.ucar.training.utils.UserUtil;
 
 
@@ -32,12 +32,9 @@ public class RegisterServlet extends HttpServlet{
         String[] allLike = request.getParameterValues("likes");
         String likes = UserUtil.getUserLikes(allLike);
         String sign = request.getParameter("area");
-        User user = new User(username,password,age,sex,likes,sign);
-        if ("admin".equals(authority)) {
-            user.setAuthority(authority);
-        }
+        User user = new User(username,password,authority,Integer.parseInt(age),sex,likes,sign);
 
-        IUserServiceImpl service = new IUserServiceImpl();
+        UserServiceImpl service = new UserServiceImpl();
         service.addUser(user);
         String source = request.getParameter("source");
         if ("add".equals(source)) {

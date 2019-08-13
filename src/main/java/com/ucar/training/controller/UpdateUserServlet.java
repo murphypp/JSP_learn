@@ -1,7 +1,7 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.entity.User;
-import com.ucar.training.service.impl.IUserServiceImpl;
+import com.ucar.training.service.impl.UserServiceImpl;
 import com.ucar.training.utils.UserUtil;
 
 import javax.servlet.ServletException;
@@ -21,12 +21,12 @@ public class UpdateUserServlet extends HttpServlet {
          String likes = UserUtil.getUserLikes(allLikes);
          String sign = request.getParameter("area");
 
-         IUserServiceImpl service = new IUserServiceImpl();
+         UserServiceImpl service = new UserServiceImpl();
          User user  = service.getUser(username);
          user.setSex(sex);
          user.setSign(sign);
          user.setLikes(likes);
-         user.setAge(age);
+         user.setAge(Integer.parseInt(age));
          service.updateUser(user);
 
          request.setAttribute("tip","用户"+username+"的信息已更新");

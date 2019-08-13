@@ -1,7 +1,7 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.entity.Message;
-import com.ucar.training.service.impl.IMessageServiceImpl;
+import com.ucar.training.service.impl.MessageServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +21,7 @@ public class ViewMessagesServlet extends HttpServlet {
             throws ServletException, IOException {
         String select = request.getParameter("select") +"";
 
-        IMessageServiceImpl service = new IMessageServiceImpl();
+        MessageServiceImpl service = new MessageServiceImpl();
         List<Message> messages = service.getAllMessage();
         System.out.println("查看留言板："+select +1);
         if(!"".equals(select)){

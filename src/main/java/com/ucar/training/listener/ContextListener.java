@@ -2,7 +2,7 @@ package com.ucar.training.listener;
 
 import com.ucar.training.entity.User;
 import com.ucar.training.service.IUserService;
-import com.ucar.training.service.impl.IUserServiceImpl;
+import com.ucar.training.service.impl.UserServiceImpl;
 
 import javax.servlet.*;
 
@@ -10,16 +10,6 @@ public class ContextListener implements ServletContextListener, ServletContextAt
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         System.out.println("Context初始化了");
-        ServletContext context = servletContextEvent.getServletContext();
-        IUserService service = new  IUserServiceImpl();
-        User admin = new User("admin1","123456","21","male","sing","233");
-        admin.setAuthority("admin");
-        User user = new User("qqq123","123456","22","female","reading","hhhhhh");
-
-        service.addUser(admin);
-        service.addUser(user);
-        context.setAttribute("allUser",service.getAllUser());
-
     }
 
     @Override
