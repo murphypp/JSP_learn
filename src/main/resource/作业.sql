@@ -63,7 +63,7 @@ where exists(
           );
 /*
  7.查询所有课程成绩小于70分的同学的学号、姓名
- 就是对于student表中的学生，不满足在score表中的平均成绩大于70的条件
+ 就是对于student表中的学生，不满足在score表中的有任何课程成绩大于70的条件
  */
 select student_id,student_name from t_student
 where not exists(
