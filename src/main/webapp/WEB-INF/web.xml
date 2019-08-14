@@ -10,7 +10,7 @@
 
   <servlet>
     <servlet-name>ModifyUser</servlet-name>
-    <servlet-class>com.ucar.training.dao.ModifyUser</servlet-class>
+    <servlet-class>com.ucar.training.controller.ModifyUser</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ModifyUser</servlet-name>
@@ -20,7 +20,7 @@
 
   <servlet>
     <servlet-name>DeleteUser</servlet-name>
-    <servlet-class>com.ucar.training.dao.DeleteUser</servlet-class>
+    <servlet-class>com.ucar.training.controller.DeleteUser</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteUser</servlet-name>

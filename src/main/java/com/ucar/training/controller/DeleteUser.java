@@ -1,8 +1,10 @@
-package com.ucar.training.dao;
+package com.ucar.training.controller;
 
 import com.ucar.training.controller.RegisterServlet;
+import com.ucar.training.dao.impl.UserDaoImpl;
 import com.ucar.training.entity.User;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +21,7 @@ import java.util.List;
  * @create:2019-08-07 14:03
  **/
 public class DeleteUser extends HttpServlet {
+    private UserDaoImpl userDao = new UserDaoImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
             String username = req.getParameter("username");
@@ -27,7 +30,11 @@ public class DeleteUser extends HttpServlet {
             if(!privileges)
                 return;
             String message ="";
-            List<User> userList = RegisterServlet.getUserList();
+            if(userDao.deleteUser(username)){
+                System.out.println("删除用户成功！");
+                message="删除用户成功！";
+            }
+            /*List<User> userList = RegisterServlet.getUserList();
             Iterator<User> u = userList.iterator();
             while (u.hasNext()){
                 User user = u.next();
@@ -36,7 +43,10 @@ public class DeleteUser extends HttpServlet {
                         System.out.println("删除用户成功！");
                         message="删除用户成功！";
                 }
-            }
+            }*/
+        List<User> userList =userDao.getAllUser();
+        ServletContext context = req.getServletContext();
+        context.setAttribute("userList",userList);
             req.setAttribute("message",message);
             req.getRequestDispatcher("userinfo.jsp").forward(req,resp);
     }
