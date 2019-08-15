@@ -21,11 +21,13 @@ public class RegisterServlet extends HttpServlet{
         doPost(request, response);
     }
     @Override
-    @SuppressWarnings("unchecked")
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String authority = request.getParameter("authority");
+        if (authority==null){
+            authority="common";
+        }
         String password = request.getParameter("password");
         String age = request.getParameter("age");
         String sex = request.getParameter("sex");
@@ -36,8 +38,9 @@ public class RegisterServlet extends HttpServlet{
 
         UserServiceImpl service = new UserServiceImpl();
         service.addUser(user);
+
         String source = request.getParameter("source");
-        if ("add".equals(source)) {
+        if ("addUser".equals(source)) {
             System.out.println("添加了新用户：当前用户数：" + service.getAllUser().size());
             request.setAttribute("tip","添加成功");
             request.getRequestDispatcher("addUser.jsp").forward(request,response);
@@ -46,6 +49,6 @@ public class RegisterServlet extends HttpServlet{
             request.setAttribute("tip","注册成功");
             request.getRequestDispatcher( "register.jsp").forward(request,response);
         }
-
+        service.after();
     }
 }

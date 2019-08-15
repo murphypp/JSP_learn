@@ -2,18 +2,19 @@ package com.ucar.training.dao;
 
 import com.ucar.training.entity.User;
 
+import java.util.List;
 import java.util.Set;
 
 public interface IUserDao {
     /**
      * 添加用户
      */
-    void add(User u);
+    void addUser(User u);
 
     /**
      * 删除用户
      */
-    void delete(String username);
+    void delUser(String username);
 
     /**
      *
@@ -26,14 +27,14 @@ public interface IUserDao {
      * @param username 用户名
      * @return 用户对象
      */
-    User getUser(String username);
+    User findUserByUsername(String username);
     /**
      *修改用户信息
      */
-    void update(User u);
+    void updateUser(User u);
     /**
      * 获取用户数量
      */
-    int size();
+    int getCountUser();
 
 }

@@ -25,7 +25,7 @@ public class UpdateUserServlet extends HttpServlet {
          User user  = service.getUser(username);
          user.setSex(sex);
          user.setSign(sign);
-         user.setLikes(likes);
+         user.setHobby(likes);
          user.setAge(Integer.parseInt(age));
          service.updateUser(user);
 

@@ -16,7 +16,7 @@
     <filter-class>com.ucar.training.filter.MessageFilter</filter-class>
     <init-param>
       <param-name>badWords</param-name>
-      <param-value>卧槽,操,草,日了,妈的,wdnmd</param-value>
+      <param-value>卧槽,操,草,日了,妈的</param-value>
     </init-param>
   </filter>
   <filter-mapping>
@@ -108,13 +108,13 @@
     <servlet-name>listFile</servlet-name>
     <servlet-class>com.ucar.training.controller.ListFileServlet</servlet-class>
   </servlet>
-  <servlet-mapping>
+    <servlet-mapping>
     <servlet-name>listFile</servlet-name>
     <url-pattern>/listFile</url-pattern>
   </servlet-mapping>
 
-  
-  <listener>
+
+    <listener>
     <listener-class>com.ucar.training.listener.ContextListener</listener-class>
   </listener>
 

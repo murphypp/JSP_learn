@@ -9,11 +9,11 @@ public interface IMessageDao {
      * 添加一条留言
      * @param m
      */
-    void add(Message m);
+    void addMessage(Message m);
     /**
      * 删除一条留言
      */
-    void delete(String ID);
+    void delMessage(String ID);
     /**
      * 修改留言信息
      */
@@ -27,5 +27,5 @@ public interface IMessageDao {
      * 删除用户所有留言
      * @param username 用户名
      */
-    void deleteUserMessages(String  username);
+    void delUserMessages(String  username);
 }

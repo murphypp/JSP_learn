@@ -86,13 +86,13 @@
         <div >
             <span>爱好：          </span>
             <input type="checkbox" name="likes" value="sing"
-                   <c:if test="${fn:contains(user.likes,'sing')}">checked</c:if> >唱歌
+                   <c:if test="${fn:contains(user.hobby,'sing')}">checked</c:if> >唱歌
             <input type="checkbox" name="likes" value="reading"
-                   <c:if test="${fn:contains(user.likes,'reading')}">checked</c:if>>看书
+                   <c:if test="${fn:contains(user.hobby,'reading')}">checked</c:if>>看书
             <input type="checkbox" name="likes" value="playing"
-                   <c:if test="${fn:contains(user.likes,'playing')}">checked</c:if>>游戏
+                   <c:if test="${fn:contains(user.hobby,'playing')}">checked</c:if>>游戏
             <input type="checkbox" name="likes" value="sports"
-                   <c:if test="${fn:contains(user.likes,'sports')}">checked</c:if>>户外运动
+                   <c:if test="${fn:contains(user.hobby,'sports')}">checked</c:if>>户外运动
             <span class="false" id="likesFalse"></span>
         </div>
         <div class="input">

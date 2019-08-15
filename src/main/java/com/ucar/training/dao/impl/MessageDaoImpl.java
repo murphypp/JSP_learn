@@ -8,19 +8,21 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageDaoImpl implements IMessageDao {
+//public class MessageDaoImpl implements IMessageDao {
+public class MessageDaoImpl {
     //private static List<Message> messages = new ArrayList<>();
 
-
+    /*
     private Connection getConnection() throws SQLException {
         return DBUtil.getConnection();
     }
+
     @Override
-    public void add(Message m) {
+    public void addMessage(Message m) {
         try {
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("insert message values (?,?,?,?);");
-            preparedStatement.setString(1,m.getID());
+            preparedStatement.setString(1,m.getId());
             preparedStatement.setString(2,m.getAuthor());
             preparedStatement.setString(3,m.getTime());
             preparedStatement.setString(4,m.getContent());
@@ -35,11 +37,11 @@ public class MessageDaoImpl implements IMessageDao {
             e.printStackTrace();
         }
 
-        //messages.add(m);
+        //messages.addUser(m);
     }
 
     @Override
-    public void delete(String ID) {
+    public void delMessage(String ID) {
         try {
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("delete from message where id=?");
@@ -66,7 +68,7 @@ public class MessageDaoImpl implements IMessageDao {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 Message m = new Message();
-                m.setID(resultSet.getString(1));
+                m.setId(resultSet.getString(1));
                 m.setAuthor(resultSet.getString(2));
                 m.setTime(resultSet.getString(3));
                 m.setContent(resultSet.getString(4));
@@ -97,7 +99,7 @@ public class MessageDaoImpl implements IMessageDao {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 Message m = new Message();
-                m.setID(resultSet.getString(1));
+                m.setId(resultSet.getString(1));
                 m.setAuthor(resultSet.getString(2));
                 m.setTime(resultSet.getString(3));
                 m.setContent(resultSet.getString(4));
@@ -119,7 +121,7 @@ public class MessageDaoImpl implements IMessageDao {
     }
 
     @Override
-    public void deleteUserMessages(String username) {
+    public void delUserMessages(String username) {
         try {
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("delete from message where author=?");
@@ -135,5 +137,6 @@ public class MessageDaoImpl implements IMessageDao {
             e.printStackTrace();
         }
     }
+     */
 
 }

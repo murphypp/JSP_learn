@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucar.training.dao.IMessageDao">
+    <insert id="addMessage" parameterType="com.ucar.training.entity.Message">
+        insert into messages(time, content, author, id)
+        values (#{time},#{content},#{author},#{id})
+    </insert>
+    <delete id="delMessage" parameterType="String">
+        delete from messages where id=#{id}
+    </delete>
+    <select id="getAllMessage" resultType="com.ucar.training.entity.Message">
+        select * from messages
+    </select>
+    <select id="getUserMessages" parameterType="String" resultType="com.ucar.training.entity.Message">
+        select * from messages where author=#{author}
+    </select>
+    <delete id="delUserMessages" parameterType="String">
+        delete from messages where id=#{id}
+    </delete>
+</mapper>

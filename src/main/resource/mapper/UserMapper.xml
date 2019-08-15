@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucar.training.dao.IUserDao">
+
+    <select id="findUserByUsername" parameterType="String" resultType="com.ucar.training.entity.User">
+        select * from users where username=#{username}
+    </select>
+    <select id="getCountUser" resultType="int">
+        select count(*) from users
+    </select>
+    <select id="getAllUser" resultType="com.ucar.training.entity.User">
+        select * from users
+    </select>
+    <insert id="addUser" parameterType="com.ucar.training.entity.User" >
+        insert into users(username,password,authority,age,sex,hobby,sign)
+        values (#{username},#{password},#{authority},#{age},#{sex},#{hobby},#{sign})
+    </insert>
+    <delete id="delUser" parameterType="java.lang.String" >
+        delete from users where username=#{username}
+    </delete>
+    <update id="updateUser" parameterType="com.ucar.training.entity.User">
+        update users set
+            age=#{age},
+            sex=#{sex},
+            hobby=#{hobby},
+            sign=#{sign}
+            where username=#{username}
+    </update>
+
+</mapper>

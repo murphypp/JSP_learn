@@ -64,7 +64,7 @@
                 <td>${message.time}</td>
                 <td>
                     <form method="post" onsubmit="return confirm('确认删除？')" action="${pageContext.request.contextPath}/deleteMessage">
-                        <input type="hidden" name="ID" hidden value="${message.ID}">
+                        <input type="hidden" name="id" hidden value="${message.id}">
                         <input type="submit" value="删除留言">
                     </form>
                 </td>

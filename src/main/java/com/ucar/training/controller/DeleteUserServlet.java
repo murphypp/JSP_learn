@@ -25,10 +25,13 @@ public class DeleteUserServlet extends HttpServlet {
         UserServiceImpl userService = new UserServiceImpl();
         userService.deleteUser(username);
         MessageServiceImpl messageService = new MessageServiceImpl();
-        messageService.deleteUserMessages(username);
+        messageService.delUserMessages(username);
 
         this.getServletContext().setAttribute("allUser",userService.getAllUser());
+        userService.after();
+        messageService.after();
         request.setAttribute("tip","删除用户"+ username+ "成功！");
         request.getRequestDispatcher("manage.jsp").forward(request,response);
+
     }
 }

@@ -26,6 +26,7 @@ public class AddMessageServlet extends HttpServlet {
         }
 
         request.setAttribute("count",service.getUserMessages(username).size());
+        service.after();
         request.getRequestDispatcher("leaveMessage.jsp").forward(request,response);
     }
 }

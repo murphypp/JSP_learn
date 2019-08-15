@@ -25,5 +25,5 @@ public interface IMessageService {
     /**
      * 删除某个用户的所有留言
      */
-    void deleteUserMessages(String username);
+    void delUserMessages(String username);
 }

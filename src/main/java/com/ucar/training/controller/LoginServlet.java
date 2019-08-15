@@ -1,6 +1,7 @@
 package com.ucar.training.controller;
 
 
+import com.ucar.training.service.IUserService;
 import com.ucar.training.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
@@ -23,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 
         String username = request.getParameter("username") + "";
         String password = request.getParameter("password") + "";
-        UserServiceImpl service = new UserServiceImpl();
+        IUserService service = new UserServiceImpl();
         /*
           flag = 0 ->登录失败
           flag = 1 ->登录成功。是普通用户

@@ -8,7 +8,9 @@ import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class UserDaoImpl implements IUserDao {
+public class UserDaoImpl{
+//public class UserDaoImpl implements IUserDao {
+    /*
     //private static Set<User> allUser = new HashSet<>();
     private Connection getConnection() throws SQLException {
         return DBUtil.getConnection();
@@ -19,16 +21,16 @@ public class UserDaoImpl implements IUserDao {
 
     }
     @Override
-    public void add(User u) {
+    public void addUser(User u) {
         try {
             Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("insert user values (?,?,?,?,?,?,?);");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert users values (?,?,?,?,?,?,?);");
             preparedStatement.setString(1,u.getUsername());
             preparedStatement.setString(2,u.getPassword());
             preparedStatement.setString(3,u.getAuthority());
             preparedStatement.setInt(4,u.getAge());
             preparedStatement.setString(5,u.getSex());
-            preparedStatement.setString(6,u.getLikes());
+            preparedStatement.setString(6,u.getHobby());
             preparedStatement.setString(7,u.getSign());
             preparedStatement.executeUpdate();
             if (preparedStatement != null) {
@@ -40,14 +42,14 @@ public class UserDaoImpl implements IUserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-       // allUser.add(u);
+       // allUser.addUser(u);
     }
 
     @Override
-    public void delete(String username) {
+    public void delUser(String username) {
         try {
             Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("delete from server.user where username=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from users where username=?");
             preparedStatement.setString(1,username);
             preparedStatement.executeUpdate();
             if (preparedStatement != null) {
@@ -62,13 +64,15 @@ public class UserDaoImpl implements IUserDao {
 
        // allUser.remove(u);
     }
+
+
     @Override
     public Set<User> getAllUser() {
         Set<User> allUser = new HashSet<>();
 
         try {
             Connection connection = getConnection();
-            PreparedStatement preparedStatement =connection.prepareStatement("select * from user");
+            PreparedStatement preparedStatement =connection.prepareStatement("select * from users");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 User user = new User();
@@ -83,7 +87,7 @@ public class UserDaoImpl implements IUserDao {
                 String  sex = resultSet.getString(5);
                 user.setSex(sex);
                 String  likes = resultSet.getString(6);
-                user.setLikes(likes);
+                user.setHobby(likes);
                 String  sign = resultSet.getString(7);
                 user.setSign(sign);
                 allUser.add(user);
@@ -104,13 +108,14 @@ public class UserDaoImpl implements IUserDao {
 
     }
 
+
     @Override
-    public User getUser(String username) {
+    public User findUserByUsername(String username) {
         try {
             User user = new User();
             Connection connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("select * from user where username=?");
+                    connection.prepareStatement("select * from users where username=?");
             preparedStatement.setString(1,username);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
@@ -119,7 +124,7 @@ public class UserDaoImpl implements IUserDao {
                 user.setAuthority(resultSet.getString(3));
                 user.setAge(resultSet.getInt(4));
                 user.setSex(resultSet.getString(5));
-                user.setLikes(resultSet.getString(6));
+                user.setHobby(resultSet.getString(6));
                 user.setSign(resultSet.getString(7));
                 if (resultSet != null) {
                     resultSet.close();
@@ -140,14 +145,14 @@ public class UserDaoImpl implements IUserDao {
     }
 
     @Override
-    public void update(User u) {
+    public void updateUser(User u) {
         try {
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "update user set age=?,sex=?,likes=?,sign=? where username=?");
+                    "update users set age=?,sex=?,likes=?,sign=? where username=?");
             preparedStatement.setInt(1,u.getAge());
             preparedStatement.setString(2,u.getSex());
-            preparedStatement.setString(3,u.getLikes());
+            preparedStatement.setString(3,u.getHobby());
             preparedStatement.setString(4,u.getSign());
             preparedStatement.setString(5,u.getUsername());
             preparedStatement.executeUpdate();
@@ -162,16 +167,22 @@ public class UserDaoImpl implements IUserDao {
         }
 
        // if(allUser.remove(u)){
-      //      allUser.add(u);
+      //      allUser.addUser(u);
        // }
     }
 
+    @Override
+    public int getCountUser() {
+        return 0;
+    }
+
+    /*
     @Override
     public int size() {
         int num = 0;
         try {
             Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("select count(username) as num from user");
+            PreparedStatement preparedStatement = connection.prepareStatement("select count(username) as num from users");
             ResultSet resultSet = preparedStatement.executeQuery();
             num = resultSet.getInt("num");
             if (resultSet != null) {
@@ -189,5 +200,6 @@ public class UserDaoImpl implements IUserDao {
         }
         return num;
         //return allUser.size();
-    }
+    }*/
+
 }

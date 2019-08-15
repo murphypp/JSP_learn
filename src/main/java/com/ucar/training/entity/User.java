@@ -6,20 +6,20 @@ public class User {
     private String password;
     private int age;
     private String sex;
-    private String likes;
+    private String hobby;
     private String sign;
     private String authority;
 
     public User(){
 
     }
-    public User(String username, String password,String authority, int age, String sex, String likes, String sign) {
+    public User(String username, String password,String authority, int age, String sex, String hobby, String sign) {
         this.username = username;
         this.password = password;
         this.authority =authority;
         this.age = age;
         this.sex = sex;
-        this.likes = likes;
+        this.hobby = hobby;
         this.sign = sign;
     }
     @Override
@@ -78,12 +78,10 @@ public class User {
         this.sex = sex;
     }
 
-    public String getLikes() {
-        return likes;
-    }
+    public String getHobby() { return hobby; }
 
-    public void setLikes(String likes) {
-        this.likes = likes;
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
     }
 
     public String getSign() {

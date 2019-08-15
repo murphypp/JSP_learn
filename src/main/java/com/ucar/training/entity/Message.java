@@ -9,7 +9,7 @@ public class Message {
     private String time;
     private String content;
     private String author;
-    private String ID;
+    private String id;
 
     public Message(){
 
@@ -20,7 +20,7 @@ public class Message {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         time = sdf.format(date);
-        ID = UUID.randomUUID().toString();
+        id = UUID.randomUUID().toString();
     }
 
     public String getTime() {
@@ -47,10 +47,10 @@ public class Message {
         this.author = author;
     }
 
-    public String getID() { return ID; }
+    public String getId() { return id; }
 
-    public void setID(String ID){
-        this.ID = ID;
+    public void setId(String id){
+        this.id = id;
     }
 
 }

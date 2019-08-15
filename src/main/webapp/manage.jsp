@@ -75,7 +75,7 @@
                         <td>${user.username}</td>
                         <td>${user.age}</td>
                         <td>${user.sex}</td>
-                        <td>${user.likes}</td>
+                        <td>${user.hobby}</td>
                         <td>${user.sign}</td>
                         <td>
                             <c:if test="${user.authority ne 'admin'}">
