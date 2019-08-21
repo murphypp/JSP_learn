@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucar.training.dao.IPermissionDao">
+    <insert id="addPermission" parameterType="com.ucar.training.entity.Permission">
+        insert into permission values (default,#{mname},#{uri})
+    </insert>
+    <delete id="delPermission" parameterType="com.ucar.training.entity.Permission">
+        delete from permission where mid=#{mid} and mname=#{mname}
+    </delete>
+    <update id="updatePermission">
+        update permission set mname=#{mname},uri=#{uri}
+        where mid=#{mid}
+    </update>
+    <select id="getPermissionById" parameterType="int" resultType="com.ucar.training.entity.Permission">
+        select * from permission where mid=#{mid}
+    </select>
+    <select id="getPermissionByName" parameterType="java.lang.String" resultType="com.ucar.training.entity.Permission">
+        select * from permission where mname=#{mname}
+    </select>
+    <select id="getAllPermission" resultType="com.ucar.training.entity.Permission">
+        select * from permission
+    </select>
+</mapper>

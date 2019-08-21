@@ -53,9 +53,6 @@ public class UserServiceImpl implements IUserService {
         User u = getUser(username);
         if(u !=null && u.getUsername().equals(username)){
             if(u.getPassword().equals(password)){
-                if(u.getAuthority().equals("admin")){
-                    return 2;
-                }
                 return 1;
             }
         }

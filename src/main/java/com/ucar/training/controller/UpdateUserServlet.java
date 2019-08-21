@@ -30,6 +30,6 @@ public class UpdateUserServlet extends HttpServlet {
          service.updateUser(user);
 
          request.setAttribute("tip","用户"+username+"的信息已更新");
-         request.getRequestDispatcher("manage.jsp").forward(request,response);
+         request.getRequestDispatcher("userManage.jsp").forward(request,response);
     }
 }

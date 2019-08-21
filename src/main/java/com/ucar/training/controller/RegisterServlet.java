@@ -23,18 +23,24 @@ public class RegisterServlet extends HttpServlet{
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        User user = new User();
         String username = request.getParameter("username");
+        user.setUsername(username);
         String authority = request.getParameter("authority");
         if (authority==null){
             authority="common";
         }
         String password = request.getParameter("password");
+        user.setPassword(password);
         String age = request.getParameter("age");
+        user.setAge(Integer.parseInt(age));
         String sex = request.getParameter("sex");
+        user.setSex(sex);
         String[] allLike = request.getParameterValues("likes");
         String likes = UserUtil.getUserLikes(allLike);
+        user.setHobby(likes);
         String sign = request.getParameter("area");
-        User user = new User(username,password,authority,Integer.parseInt(age),sex,likes,sign);
+        user.setSign(sign);
 
         UserServiceImpl service = new UserServiceImpl();
         service.addUser(user);

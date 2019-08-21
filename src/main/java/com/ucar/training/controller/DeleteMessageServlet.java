@@ -17,6 +17,6 @@ public class DeleteMessageServlet extends HttpServlet {
 
         request.setAttribute("allMessages",service.getAllMessage());
         service.after();
-        request.getRequestDispatcher("messages.jsp").forward(request,response);
+        request.getRequestDispatcher("messageManage.jsp").forward(request,response);
     }
 }

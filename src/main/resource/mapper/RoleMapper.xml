@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucar.training.dao.IRoleDao">
+    <resultMap id="roleMap" type="com.ucar.training.entity.Role">
+        <id property="rid" column="rid"/>
+        <result property="rname" column="rname"/>
+        <collection property="permissions" ofType="Permission" column="rid" select="getPermissions"/>
+    </resultMap>
+    <select id="getUserRoleByUsername" resultMap="roleMap" parameterType="java.lang.String">
+        select r.* from users inner join roles r on users.rid = r.rid where username=#{username};
+    </select>
+    <insert id="addRole" parameterType="com.ucar.training.entity.Role">
+        insert into roles(rid,rname)
+        values (#{rid},#{rname})
+    </insert>
+    <delete id="delRole" parameterType="com.ucar.training.entity.Role">
+        delete from roles where rid=#{rid} and rname=#{rname}
+    </delete>
+    <select id="getAllRoles" resultMap="roleMap">
+        select * from roles
+    </select>
+    <select id="getPermissions" parameterType="com.ucar.training.entity.Role" resultType="com.ucar.training.entity.Permission">
+        select p.* from roles
+        inner join role_permission rp on roles.rid = rp.rid
+        inner join permission p on rp.mid = p.mid
+        where roles.rid=#{rid}
+    </select>
+    <select id="getRoleById" parameterType="int" resultMap="roleMap">
+        select * from roles where rid=#{rid}
+    </select>
+    <delete id="delRolePermissionsById" parameterType="int" >
+        delete from role_permission where rid=#{rid}
+    </delete>
+
+    <insert id="addRolePermission" parameterType="com.ucar.training.entity.RolePermission">
+        insert into role_permission(rid, mid)
+        values (#{rid},#{mid})
+    </insert>
+</mapper>

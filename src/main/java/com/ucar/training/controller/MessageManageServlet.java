@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class ViewMessagesServlet extends HttpServlet {
+public class MessageManageServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -19,16 +19,15 @@ public class ViewMessagesServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String select = request.getParameter("select") +"";
-
+        String select = request.getParameter("select");
+        if(select == null)select = "";
         MessageServiceImpl service = new MessageServiceImpl();
         List<Message> messages = service.getAllMessage();
-        System.out.println("查看留言板："+select +1);
         if(!"".equals(select)){
             messages = service.getUserMessages(select);
         }
 
         request.setAttribute("allMessages",messages);
-        request.getRequestDispatcher("messages.jsp").forward(request,response);
+        request.getRequestDispatcher("messageManage.jsp").forward(request,response);
     }
 }

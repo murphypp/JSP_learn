@@ -31,7 +31,7 @@ public class DeleteUserServlet extends HttpServlet {
         userService.after();
         messageService.after();
         request.setAttribute("tip","删除用户"+ username+ "成功！");
-        request.getRequestDispatcher("manage.jsp").forward(request,response);
+        request.getRequestDispatcher("userManage.jsp").forward(request,response);
 
     }
 }

@@ -1,7 +1,11 @@
 package com.ucar.training.controller;
 
 
+import com.ucar.training.entity.Permission;
+import com.ucar.training.entity.Role;
+import com.ucar.training.service.IRoleService;
 import com.ucar.training.service.IUserService;
+import com.ucar.training.service.impl.RoleServiceImpl;
 import com.ucar.training.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
@@ -10,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 public class LoginServlet extends HttpServlet {
 
@@ -27,23 +32,26 @@ public class LoginServlet extends HttpServlet {
         IUserService service = new UserServiceImpl();
         /*
           flag = 0 ->登录失败
-          flag = 1 ->登录成功。是普通用户
-          flag = 2 ->登录成功，是管理员
+          flag = 1 ->登录成功。
          */
         int flag = service.getPass(username,password);
 
         if (flag == 1){
+            request.getSession().setAttribute("current",service.getUser(username));
+            request.getRequestDispatcher("checkRole").forward(request,response);
+            /*
             System.out.println("用户"+username+"成功登录!");
             HttpSession session = request.getSession();
             session.setAttribute("current",username);
             request.getRequestDispatcher("addMessage").forward(request,response);
-        }else if(flag == 2){
+             */
+        }/*else if(flag == 2){
             System.out.println("管理员成功登录：" + username);
             HttpSession session = request.getSession();
             session.setAttribute("current",username);
             session.setAttribute("users",service.getAllUser());
-            request.getRequestDispatcher("manage.jsp").forward(request,response);
-        }
+            request.getRequestDispatcher("userManage.jsp").forward(request,response);
+        }*/
         else {
             System.out.println("登录失败：用户名或密码错误" + username);
             request.setAttribute("warn","用户名或密码错误");

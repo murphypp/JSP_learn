@@ -97,12 +97,12 @@
     <url-pattern>/deleteMessage</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>viewMessages</servlet-name>
-    <servlet-class>com.ucar.training.controller.ViewMessagesServlet</servlet-class>
+    <servlet-name>messageManage</servlet-name>
+    <servlet-class>com.ucar.training.controller.MessageManageServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>viewMessages</servlet-name>
-    <url-pattern>/viewMessages</url-pattern>
+    <servlet-name>messageManage</servlet-name>
+    <url-pattern>/messageManage</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>listFile</servlet-name>
@@ -112,9 +112,48 @@
     <servlet-name>listFile</servlet-name>
     <url-pattern>/listFile</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>checkRole</servlet-name>
+    <servlet-class>com.ucar.training.controller.CheckRoleServerlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>checkRole</servlet-name>
+    <url-pattern>/checkRole</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>com.ucar.training.controller.ActionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>/action</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>roleManage</servlet-name>
+    <servlet-class>com.ucar.training.controller.RoleManageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>roleManage</servlet-name>
+    <url-pattern>/roleManage</url-pattern>
+  </servlet-mapping>
+   <servlet>
+       <servlet-name>menuManage</servlet-name>
+       <servlet-class>com.ucar.training.controller.MenuManageServlet</servlet-class>
+   </servlet>
+    <servlet-mapping>
+        <servlet-name>menuManage</servlet-name>
+        <url-pattern>/menuManage</url-pattern>
+    </servlet-mapping>
+  <servlet>
+    <servlet-name>userManage</servlet-name>
+    <servlet-class>com.ucar.training.controller.UserManageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>userManage</servlet-name>
+    <url-pattern>/userManage</url-pattern>
+  </servlet-mapping>
 
-
-    <listener>
+  <listener>
     <listener-class>com.ucar.training.listener.ContextListener</listener-class>
   </listener>
 

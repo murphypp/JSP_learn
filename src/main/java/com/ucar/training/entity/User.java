@@ -2,13 +2,30 @@ package com.ucar.training.entity;
 
 
 public class User {
+    private int uid;
+    private int rid;
     private String username;
     private String password;
     private int age;
     private String sex;
     private String hobby;
     private String sign;
-    private String authority;
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public int getRid() {
+        return rid;
+    }
+
+    public void setRid(int rid) {
+        this.rid = rid;
+    }
 
     public User(){
 
@@ -16,7 +33,6 @@ public class User {
     public User(String username, String password,String authority, int age, String sex, String hobby, String sign) {
         this.username = username;
         this.password = password;
-        this.authority =authority;
         this.age = age;
         this.sex = sex;
         this.hobby = hobby;
@@ -92,8 +108,5 @@ public class User {
         this.sign = sign;
     }
 
-    public String getAuthority() { return authority; }
-
-    public void setAuthority(String authority) { this.authority = authority; }
 
 }

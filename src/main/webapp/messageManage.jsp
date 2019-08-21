@@ -37,7 +37,7 @@
 <div class="messages">
     <div class="action">
         <div>
-            <form method="post" action="${pageContext.request.contextPath}/viewMessages">
+            <form method="post" action="${pageContext.request.contextPath}/messageManage">
                 <input hidden type="hidden" name="select" >
                 <input type="submit" value="全部留言">
             </form>
