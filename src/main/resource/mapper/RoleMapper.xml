@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ucar.training.dao.IRoleDao">
+<mapper namespace="com.ucar.training.mapper.RoleMapper">
     <resultMap id="roleMap" type="com.ucar.training.entity.Role">
         <id property="rid" column="rid"/>
         <result property="rname" column="rname"/>
@@ -35,8 +35,8 @@
         delete from role_permission where rid=#{rid}
     </delete>
 
-    <insert id="addRolePermission" parameterType="com.ucar.training.entity.RolePermission">
+    <insert id="addRolePermission" >
         insert into role_permission(rid, mid)
-        values (#{rid},#{mid})
+        values (#{0},#{1})
     </insert>
 </mapper>

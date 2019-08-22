@@ -3,18 +3,19 @@
   Created by IntelliJ IDEA.
   User: EDZ
   Date: 2019/8/5
-  Time: 12:51
+  Time: 19:37
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>普通用户注册</title>
+    <title>管理员添加新用户</title>
 </head>
 <style type="text/css">
     body{
+        background: peru;
     }
-    .register{
+    .addUser{
         position:relative;
         left: 20%;
         top: 10%;
@@ -179,27 +180,19 @@
     }
 </script>
 
-<body style="background: aliceblue" >
-<div class="register">
-    <h1>用户注册</h1>
-    <h4><a href="login.jsp">已有账号？点击前往登录</a></h4>
+<body style="background: darkkhaki " >
+<div class="addUser">
+    <h1>添加新用户</h1>
     <%--@elvariable id="tip" type="java.lang.String"--%>
     <c:if test="${tip ne null}">
         <h3>${tip}</h3>
     </c:if>
-    <form id="registerForm" action="${pageContext.request.contextPath}/Register.action" method="post"  onsubmit="return check()">
-        <input hidden value="register" type="hidden" name="source">
+    <form id="addForm" action="${pageContext.request.contextPath}/" method="post"  onsubmit="return check()">
+        <input hidden value="add" type="hidden" name="source">
         <div class="input">
             <span>用户名：       </span>
             <input type="text" id="username" name="username"  onchange="checkUsername()" onblur="checkUsername()" style="width: 200px">
             <span class="false" id="userFalse"></span>
-        </div>
-        <div class="input">
-            <span>用户角色：         </span>
-            <%--@elvariable id="allRole" type="java.util.List<com.ucar.training.entity.Role>"--%>
-            <c:forEach var="role" items="${allRole}">
-                <input type="radio" name="rid" value="${role.rid}" >${role.rname}
-            </c:forEach>
         </div>
         <div>
             <span>性别：         </span>
@@ -235,7 +228,7 @@
             <span class="false" id="areaFalse"></span>
         </div>
         <div>
-            <input type="submit" value="注册"  class="submit">
+            <input type="submit" value="添加"  class="submit">
             <br/>
             <input type="button" value="取消" class="submit" onclick="window.close()">
         </div>

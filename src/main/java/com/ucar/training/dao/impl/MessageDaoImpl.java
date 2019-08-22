@@ -1,13 +1,5 @@
 package com.ucar.training.dao.impl;
 
-import com.ucar.training.dao.IMessageDao;
-import com.ucar.training.entity.Message;
-import com.ucar.training.utils.DBUtil;
-
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
 //public class MessageDaoImpl implements IMessageDao {
 public class MessageDaoImpl {
     //private static List<Message> messages = new ArrayList<>();

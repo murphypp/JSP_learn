@@ -2,7 +2,7 @@ package com.ucar.training;
 
 import com.ucar.training.dao.IRoleDao;
 import com.ucar.training.entity.Role;
-import com.ucar.training.utils.DBUtil;
+import com.ucar.training.util.DBUtil;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;

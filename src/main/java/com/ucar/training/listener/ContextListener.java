@@ -1,9 +1,6 @@
 package com.ucar.training.listener;
 
-import com.ucar.training.entity.User;
-import com.ucar.training.service.IUserService;
-import com.ucar.training.service.impl.UserServiceImpl;
-import com.ucar.training.utils.DBUtil;
+import com.ucar.training.util.DBUtil;
 
 import javax.servlet.*;
 

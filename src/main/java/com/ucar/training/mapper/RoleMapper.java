@@ -1,13 +1,13 @@
-package com.ucar.training.dao;
+package com.ucar.training.mapper;
 
 import com.ucar.training.entity.Role;
 
 import java.util.List;
 
-public interface IRoleDao {
+public interface RoleMapper {
     /*
-    通过用户名查找其对应的角色
-     */
+     通过用户名查找其对应的角色
+      */
     Role getUserRoleByUsername(String username);
     /*
     添加角色

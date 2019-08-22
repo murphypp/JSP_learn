@@ -1,13 +1,5 @@
 package com.ucar.training.dao.impl;
 
-import com.ucar.training.dao.IUserDao;
-import com.ucar.training.entity.User;
-import com.ucar.training.utils.DBUtil;
-
-import java.sql.*;
-import java.util.HashSet;
-import java.util.Set;
-
 public class UserDaoImpl{
 //public class UserDaoImpl implements IUserDao {
     /*

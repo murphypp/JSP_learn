@@ -13,12 +13,13 @@
     <title>Title</title>
 </head>
 <body>
-<%--@elvariable id="permissions" type="java.util.List<com.ucar.training.entity.Permission>"--%>
+
 
 <ul>
-    <c:forEach var="permission" items="${permissions}">
+    <%--@elvariable id="currentRole" type="com.ucar.training.entity.Role"--%>
+    <c:forEach var="permission" items="${currentRole.permissions}">
         <li>
-            <a href="${pageContext.request.contextPath}/action?action=${permission.mname}">${permission.mname}</a>
+            <a href="${pageContext.request.contextPath}/action.action?action=${permission.mname}">${permission.mname}</a>
         </li>
     </c:forEach>
 </ul>

@@ -12,7 +12,7 @@
 </head>
 <style type="text/css">
     body{
-        background: url("images/indexbg.jpg");
+        background: darkcyan;
     }
     .form{
         position: relative;
@@ -35,9 +35,9 @@
 <body>
 <div class="form">
     <h2>用户登录</h2>
-    <h4><a href="register.jsp">没有账号？点击前往注册</a></h4>
+    <h4><a href="${pageContext.request.contextPath}/toRegister.action">没有账号？点击前往注册</a></h4>
     <div class="login">
-        <form action="${pageContext.request.contextPath}/login" method="post" >
+        <form action="${pageContext.request.contextPath}/login.action" method="post" >
             <label>用户名
                 <input type="text" name="username">
             </label>
