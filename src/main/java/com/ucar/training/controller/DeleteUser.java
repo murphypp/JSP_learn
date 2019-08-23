@@ -3,6 +3,7 @@ package com.ucar.training.controller;
 import com.ucar.training.controller.RegisterServlet;
 import com.ucar.training.dao.impl.UserDaoImpl;
 import com.ucar.training.entity.User;
+import com.ucar.training.services.impl.UserService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,16 +22,16 @@ import java.util.List;
  * @create:2019-08-07 14:03
  **/
 public class DeleteUser extends HttpServlet {
-    private UserDaoImpl userDao = new UserDaoImpl();
+    private UserService userService = new UserService();
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            String username = req.getParameter("username");
-            HttpSession session = req.getSession();
-            Boolean privileges = ((User)session.getAttribute("nowUser")).isPrivileges();
-            if(!privileges)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            String username = request.getParameter("username");
+            HttpSession session = request.getSession();
+            Boolean permission = ((User)session.getAttribute("nowUser")).isPermission();
+            if(!permission)
                 return;
             String message ="";
-            if(userDao.deleteUser(username)){
+            if(userService.deleteUser(username)){
                 System.out.println("删除用户成功！");
                 message="删除用户成功！";
             }
@@ -44,15 +45,15 @@ public class DeleteUser extends HttpServlet {
                         message="删除用户成功！";
                 }
             }*/
-        List<User> userList =userDao.getAllUser();
-        ServletContext context = req.getServletContext();
+        List<User> userList =userService.selectALL();
+        ServletContext context = request.getServletContext();
         context.setAttribute("userList",userList);
-            req.setAttribute("message",message);
-            req.getRequestDispatcher("userinfo.jsp").forward(req,resp);
+        request.setAttribute("message",message);
+        request.getRequestDispatcher("userinfo.jsp").forward(request,response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }

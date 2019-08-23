@@ -18,14 +18,14 @@ public interface IUserDao{
      * @param password
      * @return User
      */
-    User find(String username,String password);
+    User findUserByPassword(String username,String password);
 
     /**
      * 根据用户名查找用户
      * @param username
      * @return User
      */
-    User find(String username);
+    User findUserByUsername(String username);
 
     /**
      * 返回所有用户
@@ -53,4 +53,6 @@ public interface IUserDao{
      * @return true/false
      */
     boolean modifyUser(User user);
+
+    boolean addUserRole(User user);
 }

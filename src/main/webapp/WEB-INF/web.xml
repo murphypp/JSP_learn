@@ -4,9 +4,87 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+  <servlet>
+    <servlet-name>ModifyRole_PermissionTemp</servlet-name>
+    <servlet-class>com.ucar.training.controller.ModifyRole_PermissionTemp</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyRole_PermissionTemp</servlet-name>
+    <url-pattern>/ModifyRole_PermissionTemp</url-pattern>
+  </servlet-mapping>
+
+
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
+
+  <servlet>
+    <servlet-name>ModifyRole_Permission</servlet-name>
+    <servlet-class>com.ucar.training.controller.ModifyRole_Permission</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyRole_Permission</servlet-name>
+    <url-pattern>/ModifyRole_Permission</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>AddRole</servlet-name>
+    <servlet-class>com.ucar.training.controller.AddRole</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddRole</servlet-name>
+    <url-pattern>/AddRole</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>DeleteRole</servlet-name>
+    <servlet-class>com.ucar.training.controller.DeleteRole</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteRole</servlet-name>
+    <url-pattern>/DeleteRole</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ModifyRole</servlet-name>
+    <servlet-class>com.ucar.training.controller.ModifyRole</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyRole</servlet-name>
+    <url-pattern>/ModifyRole</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>DeletePermission</servlet-name>
+    <servlet-class>com.ucar.training.controller.DeletePermission</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeletePermission</servlet-name>
+    <url-pattern>/DeletePermission</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>AddPermission</servlet-name>
+    <servlet-class>com.ucar.training.controller.AddPermission</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddPermission</servlet-name>
+    <url-pattern>/AddPermission</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ModifyPermission</servlet-name>
+    <servlet-class>com.ucar.training.controller.ModifyPermission</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyPermission</servlet-name>
+    <url-pattern>/ModifyPermission</url-pattern>
+  </servlet-mapping>
+
+
 
   <servlet>
     <servlet-name>ModifyUser</servlet-name>
@@ -103,14 +181,7 @@
     <url-pattern>/messageBook</url-pattern>
   </filter-mapping>
 
-  <filter>
-    <filter-name>LoginFilter</filter-name>
-    <filter-class>com.ucar.training.filter.LoginFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>LoginFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
+
 
   <filter>
     <filter-name>CharactorFilter</filter-name>

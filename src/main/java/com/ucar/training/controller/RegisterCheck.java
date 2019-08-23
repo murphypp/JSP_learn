@@ -2,6 +2,7 @@ package com.ucar.training.controller;
 
 import com.ucar.training.dao.impl.UserDaoImpl;
 import com.ucar.training.entity.User;
+import com.ucar.training.services.impl.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,12 +18,12 @@ import java.util.List;
  * @create:2019-08-01 15:54
  **/
 public class RegisterCheck extends HttpServlet {
-    private UserDaoImpl userDao = new UserDaoImpl();
+    private UserService userService = new UserService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("正在检验用户名...");
         String username = request.getParameter("username");
-        if(userDao.find(username)!=null)
+        if(userService.selectOne(username)!=null)
             response.getWriter().print("1");
         /*List<User> userList =userDao.getAllUser();
         for(User test:userList){

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucar.training.dao.IPermissionDao">
+
+    <!--返回所有用户权限-->
+    <select id="findPermissionByUsername" parameterType="String" resultType="com.ucar.training.entity.Permission">
+        SELECT * from permission WHERE id in(
+        select per_id from role_permission WHERE role_id in(
+        select role_id from user_role WHERE user_id in(
+        select id from user WHERE username = #{username})))
+    </select>
+
+    <!--返回所有权限-->
+    <select id="getAllPermission"  resultType="com.ucar.training.entity.Permission">
+        SELECT * from permission
+    </select>
+
+    <select id="getPermissionIdByName" parameterType="String"  resultType="com.ucar.training.entity.Permission">
+        SELECT * from permission where permissionName=#{permissionName}
+    </select>
+
+
+    <!--新增-->
+    <insert id="addPermission" parameterType="com.ucar.training.entity.Permission" >
+        insert into permission(id,permissionName,permissionUrl)
+        values (#{id},#{permissionName},#{permissionUrl})
+    </insert>
+
+    <!--删除-->
+    <delete id="deletePermission"  >
+        delete from permission where id=#{id}
+    </delete>
+
+    <!--修改-->
+    <update id="modifyPermission" parameterType="com.ucar.training.entity.Permission">
+        update permission set
+            id=#{id},
+            permissionName=#{permissionName},
+            permissionUrl=#{permissionUrl}
+            where id=#{id}
+    </update>
+
+
+</mapper>

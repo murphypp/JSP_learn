@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.ucar.training.dao.IUserDao">
+
+    <!--返回所有用户列表-->
+    <select id="getAllUser" resultType="com.ucar.training.entity.User">
+        select * from user
+    </select>
+
+    <!--根据用户名查找用户-->
+    <select id="findUserByUsername" parameterType="java.lang.String" resultType="com.ucar.training.entity.User">
+        select * from user where username=#{username}
+    </select>
+
+    <!--根据用户名及密码查找用户-->
+    <select id="findUserByPassword" parameterType="String" resultType="com.ucar.training.entity.User">
+        select * from user where username=#{arg0} and password=#{arg1}
+    </select>
+
+    <!--新增用户-->
+    <insert id="addUser" parameterType="com.ucar.training.entity.User" >
+        insert into user(username,password,realname,permission,age,sex,phone,email,hobby,sign)
+        values (#{username},#{password},#{realname},#{privileges},#{age},#{sex},#{phone},#{email},#{hobby},#{sign})
+    </insert>
+
+    <!--删除用户-->
+    <delete id="deleteUser" parameterType="java.lang.String" >
+        delete from user where username= #{username}
+    </delete>
+
+    <!--修改用户-->
+    <update id="modifyUser" parameterType="com.ucar.training.entity.User">
+        update user set
+            password=#{password},
+            realname=#{realname},
+            age=#{age},
+            sex=#{sex},
+            phone=#{phone},
+            email=#{email},
+            hobby=#{hobby},
+            sign=#{sign},
+            roleId=#{roleId}
+            where username=#{username}
+    </update>
+
+
+</mapper>

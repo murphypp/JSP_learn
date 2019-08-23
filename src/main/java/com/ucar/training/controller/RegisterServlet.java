@@ -2,6 +2,7 @@ package com.ucar.training.controller;
 
 import com.ucar.training.dao.impl.UserDaoImpl;
 import com.ucar.training.entity.User;
+import com.ucar.training.services.impl.UserService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -20,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  * @create:2019-08-01 14:27
  **/
 public class RegisterServlet extends HttpServlet {
-    private UserDaoImpl userDao = new UserDaoImpl();
+    private UserService userService = new UserService();
    /* static private List<User> userList = new ArrayList<>();
     static {
         System.out.println("静态代码块初始化");
@@ -37,7 +38,7 @@ public class RegisterServlet extends HttpServlet {
         String phone    = request.getParameter("phone");
         String age      = request.getParameter("age");
         String sex      = request.getParameter("sex");
-        String privileges = request.getParameter("privileges");
+        String permission = request.getParameter("permission");
         String[] hobbyList = request.getParameterValues("hobby");
         String sign = request.getParameter("sign");
         String hobby="";
@@ -45,8 +46,8 @@ public class RegisterServlet extends HttpServlet {
             hobby=hobby+","+str;
         }
         hobby=hobby.replaceFirst(",","");
-        User a = new User(username,password,email,realname,Integer.parseInt(age),sex,phone,privileges,hobby,sign);
-        if(userDao.addUser(a)){
+        User user = new User(username,password,email,realname,Integer.parseInt(age),sex,phone,permission,hobby,sign);
+        if(userService.registerUser(user)){
             System.out.println("注册成功，执行跳转");
             String message = "注册成功！";
             request.setAttribute("message",message);

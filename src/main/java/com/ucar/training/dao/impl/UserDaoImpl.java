@@ -16,11 +16,10 @@ import java.util.List;
  * @author:linshaoxiong
  * @create:2019-08-12 15:58
  **/
-public class UserDaoImpl implements IUserDao {
-
+public class UserDaoImpl {
+/*
     @Override
-    public
-    User find(String username, String password) {
+    public User findUserByPassword(String username, String password) {
         Connection connection = DBUtil.getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -53,7 +52,7 @@ public class UserDaoImpl implements IUserDao {
     }
 
     @Override
-    public User find(String username) {
+    public User findUserByUsername(String username) {
         Connection connection = DBUtil.getConnection();
         PreparedStatement preparedStatement=null;
         ResultSet resultSet=null;
@@ -197,5 +196,5 @@ public class UserDaoImpl implements IUserDao {
         }finally {
             DBUtil.close(resultSet,preparedStatement,connection);
         }
-    }
+    }*/
 }

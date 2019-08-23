@@ -130,11 +130,12 @@
         篮球<input type="checkbox" name="hobby" value="篮球"onclick="showErrorCheck()"<C:if test="${fn:contains(h.hobby,'篮球')}"> checked="checked"</C:if>>
         足球<input type="checkbox" name="hobby" value="足球"onclick="showErrorCheck()"<C:if test="${fn:contains(h.hobby,'足球')}"> checked="checked"</C:if>>
         <span id="ERROR_hobby">请至少选择一个 </span><br>
-        <label>邀请码:</label><input type="text" name="privileges" id="privileges" readonly="readonly"> <span>不可修改</span>
+        <label>邀请码:</label><input type="text" name="permission" id="permission" readonly="readonly"> <span>不可修改</span>
         <br>
-        <label >个人签名:</label><textarea name="sign" id="" cols="30" rows="2" required >${h.sign}</textarea><br>
+        <label >个人签名:</label><textarea name="sign"  cols="30" rows="2" required >${h.sign}</textarea><br>
+        <label>角色:</label><input type="text" name="roleId" id="roleId" value="${h.roleId}" >
         <br>
-
+        <br>
         <input type="submit" value="修改" class="button_left" > <input type="reset" name="重置" class="button_right" >
     </form>
     </C:if>

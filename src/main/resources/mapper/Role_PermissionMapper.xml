@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucar.training.dao.IRole_PermissionDao">
+
+    <select id="findPermissionNameByRoleId"  resultType="String">
+        SELECT permissionName from role_permission where role_id =#{id}
+    </select>
+
+    <select id="findPermissionIdByRoleId"  resultType="java.lang.Integer">
+            SELECT per_id from role_permission where role_id =#{id}
+    </select>
+
+
+    <insert id="addRecord"  >
+        insert into role_permission(role_id,per_id,permissionName)
+        values (#{arg0},#{arg1},#{arg2})
+    </insert>
+
+</mapper>

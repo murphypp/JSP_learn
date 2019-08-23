@@ -17,12 +17,12 @@
 </div>
 
 <script>
-    var privileges=true;
+    var permission=true;
     var message="";
-    if(privileges==<%=session.getAttribute("privileges")%>)
+    if(permission==<%=session.getAttribute("permission")%>)
         message="欢迎管理员用户！"
     else
-        message="普通用户只能留言和查看留言!"
+        message="普通用户只能留言"
     alert(message)
 
 </script>
@@ -181,9 +181,6 @@
                         React.createElement(Modal.Footer, null,
                             React.createElement(Button, { onClick: this.add.bind(this), bsStyle: "primary", id: "addButton" }, "新增"),
                             React.createElement(Button, { onClick: this.close.bind(this) }, "关闭")))));
-
-
-
 
         }}
 

@@ -1,8 +1,14 @@
 package com.ucar.training.util;
 
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
 import java.sql.*;
-import java.util.Properties;
 
 /**
  * @program:training_servlet
@@ -11,6 +17,36 @@ import java.util.Properties;
  * @create:2019-08-12 15:56
  **/
 public class DBUtil {
+
+    private static SqlSessionFactory sqlSessionFactory;
+    static {
+        try {
+            //执行其他方法前需要创建SqlSessionFactory
+            // mybatis配置文件
+            String resource = "mybatis-config.xml";
+            // 得到配置文件流
+            InputStream inputStream = Resources.getResourceAsStream(resource);
+            // 创建会话工厂，传入mybatis的配置文件信息
+            sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    //返回会话
+    public static SqlSession getSession(){
+        return sqlSessionFactory.openSession();
+    }
+    //资源关闭
+    public static void close(SqlSession sqlSession){
+        //提交会话
+        sqlSession.commit();
+        //关闭会话
+        sqlSession.close();
+    }
+
+
+/*
+
     //定义连接数据库需要的变量
     private static Connection connection = null;
     private static PreparedStatement preparedStatement = null;
@@ -21,14 +57,13 @@ public class DBUtil {
     private static String password="123456";
     private static String driver="com.mysql.cj.jdbc.Driver";
 
-    /**
-     * 加载驱动
-     */
+
+
     static {
         try{
-            /*System.out.println("url="+url);
+            System.out.println("url="+url);
             System.out.println("username="+username);
-            System.out.println("driver="+driver);*/
+            System.out.println("driver="+driver);
             //加载驱动
             Class.forName(driver);
         }catch (Exception e){
@@ -36,10 +71,12 @@ public class DBUtil {
             e.printStackTrace();
         }
     }
-    /**
+    */
+/**
      * 得到Connection连接
      * @return Connection
-     */
+    *//*
+
     public static Connection getConnection(){
         try{
             //建立连接
@@ -52,12 +89,14 @@ public class DBUtil {
         return connection;
     }
 
-    /**
+     */
+/*
      * 资源关闭函数
      * @param resultSet
      * @param
      * @param
-     */
+        *//*
+
     public static void close(ResultSet resultSet,PreparedStatement preparedStatement,Connection connection )
     {
         if(resultSet!=null){
@@ -82,34 +121,8 @@ public class DBUtil {
             }
         }
     }
-    public static void close(ResultSet resultSet )
-    {
-        if(resultSet!=null){
-            try{
-                resultSet.close();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-    }
-    public static void close(PreparedStatement preparedStatement )
-    {
-        if(preparedStatement!=null){
-            try{
-                preparedStatement.close();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-    }
-    public static void close(Connection connection )
-    {
-        if(connection!=null){
-            try{
-                connection.close();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-    }
+
+
+*/
+
 }

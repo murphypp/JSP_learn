@@ -3,6 +3,7 @@ package com.ucar.training.controller;
 import com.ucar.training.controller.RegisterServlet;
 import com.ucar.training.dao.impl.UserDaoImpl;
 import com.ucar.training.entity.User;
+import com.ucar.training.services.impl.UserService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -19,7 +20,8 @@ import java.util.List;
  * @create:2019-08-07 13:52
  **/
 public class ModifyUser extends HttpServlet {
-    private UserDaoImpl userDao = new UserDaoImpl();
+    private UserService userService = new UserService();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
@@ -29,19 +31,20 @@ public class ModifyUser extends HttpServlet {
         String phone    = request.getParameter("phone");
         String age      = request.getParameter("age");
         String sex      = request.getParameter("sex");
-        String privileges = request.getParameter("privileges");
+        String permission = request.getParameter("permission");
         String[] hobbyList = request.getParameterValues("hobby");
         String sign = request.getParameter("sign");
+        int roleId =Integer.parseInt(request.getParameter("roleId")) ;
         String hobby="";
         for(String str:hobbyList){
             hobby=hobby+","+str;
         }
         hobby=hobby.replaceFirst(",","");
-        User tmpUser = new User(username,password,email,realname,Integer.parseInt(age),sex,phone,privileges,hobby,sign);
-        List<User> userList =userDao.getAllUser();
-        ServletContext context = request.getServletContext();
-        context.setAttribute("userList",userList);
-        if(userDao.modifyUser(tmpUser)){
+        User tmpUser = new User(username,password,email,realname,Integer.parseInt(age),sex,phone,permission,hobby,sign,roleId);
+        if(userService.modifyUser(tmpUser)){
+            List<User> userList = userService.selectALL();
+            ServletContext context = request.getServletContext();
+            context.setAttribute("userList",userList);
             System.out.println("修改成功，执行跳转");
             String message = "修改成功！";
             request.setAttribute("message",message);
