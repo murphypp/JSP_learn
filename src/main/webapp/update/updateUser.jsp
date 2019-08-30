@@ -1,121 +1,138 @@
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: EDZ
-  Date: 2019/8/5
-  Time: 19:37
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.ucar.training.entity.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="C"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
-    <title>编辑用户信息</title>
+    <title>Modify</title>
+    <link href="style/register.css" rel="stylesheet" type="text/css" />
+    <script>
+        //定义全局不可提交变量
+        var flag=1;
+        var testpassword;
+        var text="";
+
+        function isEmpty(obj) {
+            var obj= obj.replace(/(^\s*)|(\s*$)/g, '');
+            if(typeof obj=="undefined"||obj==null||obj=="")
+                return true;
+            else
+                return false
+        }
+        function showErrorAge() {
+            var reg=/^\d+$/;
+            var age=document.getElementById("age").value;
+            if(isEmpty(age)) {
+                document.getElementById("ERROR_age").innerText="*(为必填)";
+                flag=1;
+            }
+            else if(reg.test(age)&&age>=1&&age<=150){
+                document.getElementById("ERROR_age").innerText="";
+                flag=0;
+            }else {
+                document.getElementById("ERROR_age").innerText="年龄必须为数字";
+            }
+        }
+        function showErrorPassword1() {
+            var reg= /[a-zA-Z0-9]{6,18}/;
+            var password1=document.getElementById("password1").value;
+            if(isEmpty(password1)) {
+                document.getElementById("ERROR_password1").innerText="*(为必填)";
+                flag=1;
+            }else if(!reg.test(password1)){
+                document.getElementById("ERROR_password1").innerText="密码6-18位，只能由字母数字组成!";
+                flag=1;
+            }
+            else{
+                testpassword=password1;
+                document.getElementById("ERROR_password1").innerText="";
+                flag=0;
+            }
+        }
+        function showErrorPassword2() {
+            var password2=document.getElementById("password2").value;
+            if(isEmpty(password2)) {
+                document.getElementById("ERROR_password2").innerText="*(为必填)";
+                flag=1;
+            }
+            else if(testpassword==password2){
+                document.getElementById("ERROR_password2").innerText="";
+                flag=0;
+            }else {
+                document.getElementById("ERROR_password2").innerText="两次密码不一致";
+                flag=1;
+            }
+        }
+        function showErrorEmail() {
+            var reg=/^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/;
+            var email=document.getElementById("email").value;
+            if(isEmpty(email)) {
+                document.getElementById("ERROR_email").innerText="*(为必填)";
+                flag=1;
+            }
+            else if(reg.test(email)){
+                document.getElementById("ERROR_email").innerText="";
+                flag=0;
+            }else{
+                document.getElementById("ERROR_email").innerText="邮件名不符合格式";
+            }
+        }
+        function showErrorCheck() {
+            var checkbox = document.getElementsByName("hobby");
+            var checksum=0;
+            for(var i=0;i<checkbox.length;i++)
+            {
+                if(checkbox[i].checked)
+                    checksum++;
+            }
+            if(checksum>=1){
+                flag=0;
+                document.getElementById("ERROR_hobby").innerText="";
+            }else {
+                flag=1;
+                document.getElementById("ERROR_hobby").innerText="请至少选择一个";
+            }
+        }
+        function submitTest() {
+            if(flag==1){
+                alert("请检查必填项！");
+                return false;
+            }
+            else {
+                return true;
+            }
+
+        }
+
+    </script>
 </head>
-<style type="text/css">
-    body{
-        background: paleturquoise;
-    }
-    .updateUser{
-        position:relative;
-        left: 20%;
-        top: 10%;
-        width: 400px;
-        z-index: 1;
-    }
-    span{
-        cursor: pointer;
-        display: inline-block;
-        padding: 3px 6px;
-        text-align: right;
-        width: 100px;
-        vertical-align: top;
-    }
-    .submit{
-        height: 50px;
-        font-size: 16px;
-        font-weight: 700;
-        background-image: none;
-        position: relative;
-        float: left;
-        left: 25px;
-        width: 350px;
-        background-color: #3f89ec;
-    }
-    .input{
-        width: 400px;
-    }
-    .false{
-        color: red;
-    }
-    input{
-        border-radius: 20px;
-    }
-</style>
-<body>
-<%--@elvariable id="users" type="java.util.Set<com.ucar.training.entity.User>"--%>
-<%--@elvariable id="userid" type="java.lang.String"--%>
-<div class="updateUser">
-    <%--@elvariable id="updatingUser" type="com.ucar.training.entity.User"--%>
-    <h2>修改用户${updatingUser.username}的信息</h2>
-    <%--@elvariable id="tip" type="java.lang.String"--%>
-    <c:if test="${tip ne null}">
-        <h3>${tip}</h3>
-    </c:if>
-    <form  action="${pageContext.request.contextPath}/updateUser.action" method="post"
-           onsubmit="return confirm('确认修改？')">
-        <input hidden value="register" type="hidden" name="source">
-        <div class="input">
-            <span>用户名：       </span>
-            <input type="text" id="username" name="username"  value="${param.userid}" style="width: 200px">
-            <span class="false" id="userFalse"></span>
-        </div>
-        <div class="input">
-            <span>角色:          </span>
-            <%--@elvariable id="roles" type="java.util.List<com.ucar.training.entity.Role>"--%>
-            <c:forEach items="${roles}" var="role">
-                <input type="radio" name="rid" value="${role.rid}"
-                       <c:if test="${role.rid == updatingUser.rid}">checked</c:if>
-                >${role.rname}
-            </c:forEach>
-        </div>
-        <div>
-            <span>性别：         </span>
-            <input type="radio" name="sex" value="male"
-                   <c:if test="${updatingUser.sex eq 'male'}">checked</c:if>>男
-            <input type="radio" name="sex" value="female"
-                   <c:if test="${updatingUser.sex eq 'female'}">checked</c:if>>女
-        </div>
-        <div class="input">
-            <span>年龄：         </span>
-            <input type="text" id="age" name="age" value="${updatingUser.age}" style="width: 200px">
-            <span class="false" id="ageFalse"></span>
-        </div>
-        <div >
-            <span>爱好：          </span>
-            <input type="checkbox" name="likes" value="sing"
-                   <c:if test="${fn:contains(updatingUser.hobby,'sing')}">checked</c:if> >唱歌
-            <input type="checkbox" name="likes" value="reading"
-                   <c:if test="${fn:contains(updatingUser.hobby,'reading')}">checked</c:if>>看书
-            <input type="checkbox" name="likes" value="playing"
-                   <c:if test="${fn:contains(updatingUser.hobby,'playing')}">checked</c:if>>游戏
-            <input type="checkbox" name="likes" value="sports"
-                   <c:if test="${fn:contains(updatingUser.hobby,'sports')}">checked</c:if>>户外运动
-            <span class="false" id="likesFalse"></span>
-        </div>
-        <div class="input">
-            <span>个人签名：       </span>
-            <textarea id="area" name="area" style="width: 200px;height: 100px;border-radius: 10px">${updatingUser.sign}</textarea>
-            <span class="false" id="areaFalse"></span>
-        </div>
-        <div>
-            <input type="submit" value="更新信息"  class="submit">
-            <br/>
-            <input type="button" value="取消" class="submit" onclick="window.history.back()">
-        </div>
+<body background="http://www.demo.amitjakhu.com/login-form/images/bg.png">
+
+<div class="div_form">
+    <font color="red"> ${message}</font>
+    <form action="${pageContext.request.contextPath}/updateUser.action" method="post" onsubmit="return submitTest()" >
+        <label >用户名:</label>  <input type="text" name="username" id="username" onblur="showErrorName()" readonly="readonly" placeholder="${updatingUser.username}" value="${updatingUser.username}" >   <span id="ERROR_name">不可修改</span><br>
+        <label >真实姓名:</label> <input type="text" name="realname"   value="${updatingUser.realname}"> <br>
+        <label >性别:</label>男<input type="radio" name="sex" <C:if test="${updatingUser.sex=='男' }">checked="checked"</C:if> value="男" />
+        女<input type="radio" name="sex" value="女"<C:if test="${updatingUser.sex=='女' }">checked="checked"</C:if>> <br>
+        <label >年龄:</label> <input type="text" name="age" id="age" onchange="showErrorAge()" value="${updatingUser.age}"> <span id="ERROR_age">*(为必填)</span> <br>
+        <label >密码:</label><input type="password" name="password1" id="password1" onchange="showErrorPassword1()" value="${updatingUser.password}"><span id="ERROR_password1">*(为必填)</span><br>
+        <label >确认密码:</label><input type="password" name="password2" id="password2" onchange="showErrorPassword2()"value="${updatingUser.password}"><span id="ERROR_password2">*(为必填)</span><br>
+        <label >电话号码:</label> <input type="text" name="phone"  value="${updatingUser.phone}"> <br>
+        <label >邮箱地址:</label> <input type="text" name="email" id="email" onchange="showErrorEmail()" value="${updatingUser.email}"><span id="ERROR_email">*(为必填)</span><br>
+        <label >爱好:</label>
+        写代码<input type="checkbox" name="hobby" value="写代码"onclick="showErrorCheck()" <C:if test="${fn:contains(updatingUser.hobby,'写代码')}"> checked="checked"</C:if> >
+        篮球<input type="checkbox" name="hobby" value="篮球"onclick="showErrorCheck()"<C:if test="${fn:contains(updatingUser.hobby,'篮球')}"> checked="checked"</C:if>>
+        足球<input type="checkbox" name="hobby" value="足球"onclick="showErrorCheck()"<C:if test="${fn:contains(updatingUser.hobby,'足球')}"> checked="checked"</C:if>>
+        <span id="ERROR_hobby">请至少选择一个 </span><br>
+        <br>
+        <label >个人签名:</label><textarea name="sign"  cols="30" rows="2" required >${updatingUser.sign}</textarea><br>
+        <label>角色:</label><input type="text" name="rid" id="rid" value="${updatingUser.rid}" >
+        <br>
+        <br>
+        <input type="submit" value="修改" class="button_left" > <input type="reset" name="重置" class="button_right" >
     </form>
 </div>
-
 </body>
 </html>

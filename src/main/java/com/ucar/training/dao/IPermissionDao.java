@@ -9,6 +9,6 @@ public interface IPermissionDao {
     int delPermission(Permission permission);
     int updatePermission(Permission permission);
     Permission getPermissionById(int id);
-    Permission getPermissionByName(String mname);
+    Permission getPermissionByName(String pname);
     List<Permission> getAllPermission();
 }

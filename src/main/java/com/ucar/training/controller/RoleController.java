@@ -17,8 +17,8 @@ public class RoleController {
     private IRoleService roleServiceImpl;
     @Resource
     private IPermissionService permissionServiceImpl;
-    @RequestMapping("/delRole")
-    public String delRole(String rid,String rname){
+    @RequestMapping("/deleteRole")
+    public String deleteRole(String rid,String rname){
         Role role = new Role();
         role.setRid(Integer.parseInt(rid));
         role.setRname(rname);
@@ -60,8 +60,8 @@ public class RoleController {
     }
     @RequestMapping("/roleManage")
     public String roleManage(HttpServletRequest request){
-        List<Role> roles =roleServiceImpl.getAllRoles();
-        request.setAttribute("roles",roles);
+        List<Role> roleList =roleServiceImpl.getAllRoles();
+        request.setAttribute("roleList",roleList);
         return "forward:/manage/roleManage.jsp";
     }
 }

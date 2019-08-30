@@ -2,38 +2,41 @@ package com.ucar.training.mapper;
 
 import com.ucar.training.entity.User;
 
-import java.util.Set;
+import java.util.List;
 
+/**
+ * @program:training_servlet
+ * @description:用户
+ * @author:linshaoxiong
+ * @create:2019-08-29 14:00
+ **/
 public interface UserMapper {
     /**
-     * 添加用户
+     * 增加用户
+     * @param  user
+     * @return int
      */
-    void addUser(User u);
-
+    int addUser(User user);
     /**
-     * 删除用户
+     * 删除一个用户
+     * @param username
+     * @return int
      */
-    void delUser(String username);
-
+    int deleteUser(String username);
     /**
-     *
-     * @return 获得用户集合
+     * 根据username，返回一个用户
+     * @param  username
+     * @return User
      */
-    Set<User> getAllUser();
-
+    User getUserByUsername(String username);
     /**
-     * 获取指定用户
-     * @param username 用户名
-     * @return 用户对象
+     * 查询所有用户
+     * @return List<User>
      */
-    User findUserByUsername(String username);
+    List<User> getAllUser();
     /**
-     *修改用户信息
+     * 修改用户
+     * @param user
      */
-    void updateUser(User u);
-    /**
-     * 获取用户数量
-     */
-    int getCountUser();
-
+    int updateUser(User user);
 }

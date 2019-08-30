@@ -1,245 +1,174 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
-  User: EDZ
-  Date: 2019/8/5
-  Time: 12:51
+  User: LinShaoxiong
+  Date: 2019/7/30
+  Time: 8:53
   To change this template use File | Settings | File Templates.
 --%>
+
+
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>普通用户注册</title>
-</head>
-<style type="text/css">
-    body{
-    }
-    .register{
-        position:relative;
-        left: 20%;
-        top: 10%;
-        width: 400px;
-        z-index: 1;
-    }
-    span{
-        cursor: pointer;
-        display: inline-block;
-        padding: 3px 6px;
-        text-align: right;
-        width: 100px;
-        vertical-align: top;
-    }
-    .submit{
-        height: 50px;
-        font-size: 16px;
-        font-weight: 700;
-        background-image: none;
-        position: relative;
-        float: left;
-        left: 25px;
-        width: 350px;
-        background-color: #3f89ec;
-    }
-    .input{
-        width: 400px;
-    }
-    .false{
-        color: red;
-    }
-    input{
-        border-radius: 20px;
-    }
-</style>
-<script type="text/javascript">
-    var text ="";
-    function ajaxCheck(username) {
-        var xmlhttp;
-        if (window.XMLHttpRequest) {
-            xmlhttp=new XMLHttpRequest();
-        } else {
-            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    <title>register</title>
+    <link href="style/register.css" rel="stylesheet" type="text/css" />
+    <script>
+        //定义全局不可提交变量
+        var flag=1;
+        var testpassword;
+        var text="";
+        function check() {
+            var xmlHttp ;
+            if(window.XMLHttpRequest) xmlHttp=new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() {
+                if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    if(xmlHttp.responseText === "1") {
+                        document.getElementById("ERROR_name").innerHTML = "用户名已被注册！";
+                        flag=1;
+                    } else {
+                        document.getElementById("ERROR_name").innerHTML = "";
+                        flag=0;
+                    }
+                }
+            };
+            var username = document.getElementById("username").value;
+            xmlHttp.open("GET", "${pageContext.request.contextPath}/RegisterCheck?username="+username, true);
+            xmlHttp.send();
         }
-        xmlhttp.onreadystatechange=function() {
-            if (xmlhttp.readyState===4 && xmlhttp.status===200)
+        function showErrorName() {
+            var name = document.getElementById("username").value;
+            var reg= /[a-zA-Z0-9]/;
+            if(name.length<6||name.length>16){
+                document.getElementById("ERROR_name").innerText="长度为6-16个字符";
+                flag=1;
+            }else if(!reg.test(name)){
+                document.getElementById("ERROR_name").innerText="用户名只能由字母和数字组成";
+                flag=1;
+            }
+            else { //进入检验是否重复阶段
+                check();
+            }
+        }
+        function isEmpty(obj) {
+            var obj= obj.replace(/(^\s*)|(\s*$)/g, '');
+            if(typeof obj=="undefined"||obj==null||obj=="")
+                return true;
+            else
+                return false
+        }
+        function showErrorAge() {
+            var reg=/^\d+$/;
+            var age=document.getElementById("age").value;
+            if(isEmpty(age)) {
+                document.getElementById("ERROR_age").innerText="*(为必填)";
+                flag=1;
+            }
+            else if(reg.test(age)&&age>=1&&age<=150){
+                document.getElementById("ERROR_age").innerText="";
+                flag=0;
+            }else {
+                document.getElementById("ERROR_age").innerText="年龄必须为数字";
+            }
+        }
+        function showErrorPassword1() {
+            var reg= /[a-zA-Z0-9]{6,18}/;
+            var password1=document.getElementById("password1").value;
+            if(isEmpty(password1)) {
+                document.getElementById("ERROR_password1").innerText="*(为必填)";
+                flag=1;
+            }else if(!reg.test(password1)){
+                document.getElementById("ERROR_password1").innerText="密码6-18位，只能由字母数字组成!";
+                flag=1;
+            }
+            else{
+                testpassword=password1;
+                document.getElementById("ERROR_password1").innerText="";
+                flag=0;
+            }
+        }
+        function showErrorPassword2() {
+            var password2=document.getElementById("password2").value;
+            if(isEmpty(password2)) {
+                document.getElementById("ERROR_password2").innerText="*(为必填)";
+                flag=1;
+            }
+            else if(testpassword==password2){
+                document.getElementById("ERROR_password2").innerText="";
+                flag=0;
+            }else {
+                document.getElementById("ERROR_password2").innerText="两次密码不一致";
+                flag=1;
+            }
+        }
+        function showErrorEmail() {
+            var reg=/^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/;
+            var email=document.getElementById("email").value;
+            if(isEmpty(email)) {
+                document.getElementById("ERROR_email").innerText="*(为必填)";
+                flag=1;
+            }
+            else if(reg.test(email)){
+                document.getElementById("ERROR_email").innerText="";
+                flag=0;
+            }else{
+                document.getElementById("ERROR_email").innerText="邮件名不符合格式";
+            }
+        }
+        function showErrorCheck() {
+            var checkbox = document.getElementsByName("hobby");
+            var checksum=0;
+            for(var i=0;i<checkbox.length;i++)
             {
-                text = xmlhttp.responseText;
+                if(checkbox[i].checked)
+                checksum++;
             }
-        };
-        xmlhttp.open("GET","${pageContext.request.contextPath}/checkUser?username="+username,true);
-        xmlhttp.send();
-        if (text === "1"){
-            return true;
-        }else if (text === "0"){
-            return false;
-        }
-    }
-    function checkUsername() {
-        var username = document.getElementById("username").value;
-        var warn = document.getElementById("userFalse");
-        warn.innerHTML = "";
-        var uPattern = /^[a-zA-Z0-9_-]{6,16}$/;
-        var check = true;
-        if (!uPattern.test(username)){
-            warn.innerHTML = "用户名格式错误！";
-            check = false;
-            return check;
-        }
-        if(ajaxCheck(username)){
-            warn.innerHTML = "用户名已存在！";
-            check =false;
-        }else {
-            warn.innerHTML = "用户名可以使用";
-        }
-        return check;
-    }
-    function checkPasswd() {
-        var password = document.getElementById("password").value;
-        var e_password = document.getElementById("e_password").value;
-        var warn = document.getElementById("PassFalse");
-        warn.innerHTML = "";
-        var uPattern = /^[a-zA-Z0-9_-]{6,18}$/;
-        var check = true;
-        if (password === ""){
-            warn.innerHTML = "密码不能为空";
-            check = false;
-        }
-        if (!uPattern.test(password)){
-            warn.innerHTML = "密码格式错误";
-            check = false;
-        }
-        return check;
-    }
-    /**
-     * @return {boolean}
-     */
-    function EnsurePasswd() {
-        var password = document.getElementById("password").value;
-        var e_password = document.getElementById("e_password").value;
-        var warn = document.getElementById("ePassFalse");
-        warn.innerHTML = "";
-        if (password !== e_password){
-            warn.innerHTML = "两次输入密码不一致！";
-            return  false;
-        }
-        return true;
-    }
-    function checkAge() {
-        var age = document.getElementById("age").value;
-        var warn = document.getElementById("ageFalse");
-        var check = true;
-        warn.innerHTML = "";
-        if (age.match(/\D/)){
-            warn.innerHTML = "请输入数字！";
-            check = false;
-        }
-        if (age < 1 || age > 150){
-            warn.innerHTML = "请输入1-150的数字";
-            check = false;
-        }
-        return check;
-    }
-    function checkBox() {
-        var likes = document.getElementsByName("likes");
-        var flag = true;
-        var warn = document.getElementById("likesFalse");
-        warn.innerHTML = "";
-        for(var i = 0; i<likes.length; i++){
-            if(likes[i].checked){
-                flag = false;
-                break;
+            if(checksum>=1){
+                    flag=0;
+                    document.getElementById("ERROR_hobby").innerText="";
+            }else {
+                flag=1;
+                document.getElementById("ERROR_hobby").innerText="请至少选择一个";
             }
         }
-        if (flag){
-            warn.innerHTML = "请至少选择一项";
-        }
-        return !flag;
-    }
-    function checkTextarea() {
-        var sign = document.getElementById("area").value;
-        var warn = document.getElementById("areaFalse");
-        warn.innerHTML = "";
-        if (sign.length<1){
-            warn.innerHTML ="个性签名不能为空";
-            return false;
-        }
-        return true;
-    }
-    function check() {
-        var result = false;
-        var c1 = checkUsername();
-        var c2 = checkAge();
-        var c3 = checkPasswd();
-        var c4 = EnsurePasswd();
-        var c5 = checkBox();
-        var c6 = checkTextarea();
-        if( c1 && c2 && c3 && c4 && c5 && c6){
-            return true;
-        }
-        return false;
-    }
-</script>
+        function submitTest() {
+            if(flag==1){
+                alert("请检查必填项！");
+                return false;
+            }
+            else {
+                return true;
+            }
 
-<body style="background: aliceblue" >
-<div class="register">
-    <h1>用户注册</h1>
-    <h4><a href="login.jsp">已有账号？点击前往登录</a></h4>
-    <%--@elvariable id="tip" type="java.lang.String"--%>
-    <c:if test="${tip ne null}">
-        <h3>${tip}</h3>
-    </c:if>
-    <form id="registerForm" action="${pageContext.request.contextPath}/Register.action" method="post"  onsubmit="return check()">
-        <input hidden value="register" type="hidden" name="source">
-        <div class="input">
-            <span>用户名：       </span>
-            <input type="text" id="username" name="username"  onchange="checkUsername()" onblur="checkUsername()" style="width: 200px">
-            <span class="false" id="userFalse"></span>
-        </div>
-        <div class="input">
-            <span>用户角色：         </span>
-            <%--@elvariable id="allRole" type="java.util.List<com.ucar.training.entity.Role>"--%>
-            <c:forEach var="role" items="${allRole}">
-                <input type="radio" name="rid" value="${role.rid}" >${role.rname}
-            </c:forEach>
-        </div>
-        <div>
-            <span>性别：         </span>
-            <input type="radio" name="sex" value="male" checked>男
-            <input type="radio" name="sex" value="female">女
-        </div>
-        <div class="input">
-            <span>年龄：         </span>
-            <input type="text" id="age" name="age" onchange="checkAge()" style="width: 200px">
-            <span class="false" id="ageFalse"></span>
-        </div>
-        <div class="input">
-            <span>密码：         </span>
-            <input type="password" id="password" name="password" onchange="checkPasswd()" style="width: 200px">
-            <span class="false" id="PassFalse"></span>
-        </div>
-        <div class="input">
-            <span>确认密码：      </span>
-            <input type="password" id="e_password" name="e_password" onchange="EnsurePasswd()" style="width: 200px">
-            <span class="false" id="ePassFalse"></span>
-        </div>
-        <div >
-            <span>爱好：          </span>
-            <input type="checkbox" name="likes" value="sing">唱歌
-            <input type="checkbox" name="likes" value="reading">看书
-            <input type="checkbox" name="likes" value="playing">游戏
-            <input type="checkbox" name="likes" value="sports">户外运动
-            <span class="false" id="likesFalse"></span>
-        </div>
-        <div class="input">
-            <span>个人签名：       </span>
-            <textarea id="area" name="area" style="width: 200px;height: 100px;border-radius: 10px">没心情。。</textarea>
-            <span class="false" id="areaFalse"></span>
-        </div>
-        <div>
-            <input type="submit" value="注册"  class="submit">
-            <br/>
-            <input type="button" value="取消" class="submit" onclick="window.close()">
-        </div>
-    </form>
+        }
+
+    </script>
+</head>
+<body background="http://www.demo.amitjakhu.com/login-form/images/bg.png">
+<div class="div_form">
+    <font color="red"> ${message}</font>
+<form action="${pageContext.request.contextPath}/Register.action" method="post" onsubmit="return submitTest()" >
+    <label >用户名:</label>  <input type="text" name="username" id="username" onblur="showErrorName()"> <span id="ERROR_name">长度6-16个字符</span><br>
+    <label >真实姓名:</label> <input type="text" name="realname"><br>
+    <label >性别:</label>男<input type="radio" name="sex" value="男" checked>
+             女<input type="radio" name="sex" value="女"> <br>
+    <label >年龄:</label> <input type="text" name="age" id="age" onchange="showErrorAge()"> <span id="ERROR_age">*(为必填)</span> <br>
+    <label >密码:</label><input type="password" name="password1" id="password1" onchange="showErrorPassword1()"><span id="ERROR_password1">*(为必填)</span><br>
+    <label >确认密码:</label><input type="password" name="password2" id="password2" onchange="showErrorPassword2()"><span id="ERROR_password2">*(为必填)</span><br>
+    <label >电话号码:</label> <input type="text" name="phone"> <br>
+    <label >邮箱地址:</label> <input type="text" name="email" id="email" onchange="showErrorEmail()"><span id="ERROR_email">*(为必填)</span><br>
+    <label >爱好:</label>
+            写代码<input type="checkbox" name="hobby" value="写代码"onclick="showErrorCheck()">
+            篮球<input type="checkbox" name="hobby" value="篮球"onclick="showErrorCheck()">
+            足球<input type="checkbox" name="hobby" value="足球"onclick="showErrorCheck()">
+        <span id="ERROR_hobby">请至少选择一个 </span><br>
+    <br>
+    <label >个人签名:</label><textarea name="sign" id="" cols="30" rows="2" required></textarea><br>
+    <br>
+
+    <input type="submit" value="注册" class="button_left" > <input type="reset" name="重置" class="button_right" >
+</form>
+
 </div>
 </body>
 </html>

@@ -1,31 +1,31 @@
 package com.ucar.training.entity;
 
 public class Permission {
-    private int mid;
-    private String mname;
-    private String uri;
+    private int pid;
+    private String pname;
+    private String url;
 
-    public String getUri() {
-        return uri;
+    public int getPid() {
+        return pid;
     }
 
-    public void setUri(String uri) {
-        this.uri = uri;
+    public void setPid(int pid) {
+        this.pid = pid;
     }
 
-    public int getMid() {
-        return mid;
+    public String getPname() {
+        return pname;
     }
 
-    public void setMid(int mid) {
-        this.mid = mid;
+    public void setPname(String pname) {
+        this.pname = pname;
     }
 
-    public String getMname() {
-        return mname;
+    public String getUrl() {
+        return url;
     }
 
-    public void setMname(String mname) {
-        this.mname = mname;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

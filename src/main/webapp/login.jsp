@@ -2,54 +2,45 @@
   Created by IntelliJ IDEA.
   User: EDZ
   Date: 2019/8/5
-  Time: 13:52
+  Time: 10:59
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>登录</title>
+    <title>login</title>
+    <link href="style/login.css" rel="stylesheet" type="text/css" />
+    <%
+        String msg=(String)request.getAttribute("message");
+        if(msg!=null){
+    %>
+    <script> alert("<%=msg%>");window.location="login.jsp";</script>
+    <%
+        }
+    %>
 </head>
-<style type="text/css">
-    body{
-        background: darkcyan;
-    }
-    .form{
-        position: relative;
-        left: 10%;
-        top: 50px;
-        height: 100px;
-        width: 250px;
-    }
-    .click{
-        background: lightblue;
-        border-radius: 10px;
-        width: 80px;
-        height: 40px;
-    }
-    .login{
-        font-size: 20px;
-        text-align: right;
-    }
-</style>
 <body>
-<div class="form">
-    <h2>用户登录</h2>
-    <h4><a href="${pageContext.request.contextPath}/toRegister.action">没有账号？点击前往注册</a></h4>
-    <div class="login">
-        <form action="${pageContext.request.contextPath}/login.action" method="post" >
-            <label>用户名
-                <input type="text" name="username">
-            </label>
-            <br/>
-            <label>密码
-                <input type="password" name="password">
-            </label>
-            <br/>
-            <input class="click" type="submit" value="登录">
-        </form>
-        <a href="index.jsp"><button class="click">返回</button></a>
+<form name="login-form" class="login-form" action="${pageContext.request.contextPath}/login.action" method="post">
+
+    <div class="header">
+        <h1>Welcome to Ucar</h1>
+        <span>Please, login first</span>
     </div>
-</div>
+
+    <div class="content">
+        <input name="username" type="text" class="input username" placeholder="Username" id="username" />
+        <div class="user-icon"></div>
+        <input name="password" type="password" class="input password" placeholder="Password" id="password" />
+        <div class="pass-icon"></div>
+    </div>
+
+    <div class="footer">
+        <a href="register.jsp" class="button2">Register</a>
+        <input type="submit" class="button1" value="Login">
+    </div>
+
+</form>
+
+
 </body>
 </html>

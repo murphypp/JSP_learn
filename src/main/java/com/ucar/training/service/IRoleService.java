@@ -13,6 +13,5 @@ public interface IRoleService {
     List<Role> getAllRoles();
     void close();
     void delRolePermissions(int rid);
-
     void addRolePermission(int rid,String[] permissions);
 }

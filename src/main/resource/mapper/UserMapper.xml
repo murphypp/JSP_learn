@@ -5,29 +5,40 @@
 
 <mapper namespace="com.ucar.training.mapper.UserMapper">
 
-    <select id="findUserByUsername" parameterType="String" resultType="com.ucar.training.entity.User">
-        select * from users where username=#{username}
-    </select>
-    <select id="getCountUser" resultType="int">
-        select count(*) from users
-    </select>
-    <select id="getAllUser" resultType="com.ucar.training.entity.User">
-        select * from users
-    </select>
+    <!--新增用户-->
     <insert id="addUser" parameterType="com.ucar.training.entity.User" >
-        insert into users(rid,username,password,age,sex,hobby,sign)
-        values (1,#{username},#{password},#{age},#{sex},#{hobby},#{sign})
+        insert into user(username,password,realname,age,sex,phone,email,hobby,sign)
+        values (#{username},#{password},#{realname},#{age},#{sex},#{phone},#{email},#{hobby},#{sign})
     </insert>
-    <delete id="delUser" parameterType="java.lang.String" >
-        delete from users where username=#{username}
+
+    <!--删除用户-->
+    <delete id="deleteUser" parameterType="java.lang.String" >
+        delete from user where username= #{username}
     </delete>
+
+    <!--修改用户-->
     <update id="updateUser" parameterType="com.ucar.training.entity.User">
-        update users set
+        update user set
+            password=#{password},
+            realname=#{realname},
             age=#{age},
             sex=#{sex},
+            phone=#{phone},
+            email=#{email},
             hobby=#{hobby},
-            sign=#{sign}
+            sign=#{sign},
+            rid=#{rid}
             where username=#{username}
     </update>
+
+    <!--返回所有用户列表-->
+    <select id="getAllUser" resultType="com.ucar.training.entity.User">
+        select * from user
+    </select>
+
+    <!--根据用户名查找用户-->
+    <select id="getUserByUsername" parameterType="java.lang.String" resultType="com.ucar.training.entity.User">
+        select * from user where username=#{username}
+    </select>
 
 </mapper>

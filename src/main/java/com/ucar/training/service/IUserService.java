@@ -2,31 +2,43 @@ package com.ucar.training.service;
 
 import com.ucar.training.entity.User;
 
-import java.util.Set;
+import java.util.List;
 
+/**
+ * @program:training_servlet
+ * @description:提供服务，调用dao层
+ * @author:linshaoxiong
+ * @create:2019-08-14 11:20
+ **/
 public interface IUserService {
+
     /**
-     * 添加用户
+     * 增加用户
+     * @param  user
+     * @return int
      */
-    void addUser( User u);
+    void addUser(User user);
     /**
-     * 删除用户
+     * 删除一个用户
+     * @param username
+     * @return int
      */
-    void deleteUser( String username);
+    void deleteUser(String username);
     /**
-     * 编辑用户信息
+     * 根据username，返回一个用户
+     * @param  username
+     * @return User
      */
-    void updateUser( User u);
+    User getUserByUsername(String username);
+
     /**
-     * 获取所有用户信息
+     * 查询所有用户
+     * @return List<User>
      */
-    Set<User> getAllUser();
+    List<User> getAllUser();
     /**
-     * 获得指定用户的信息
+     * 修改用户
+     * @param user
      */
-    User getUser(String username);
-    /**
-     * 获得用户的登录权限
-     */
-    int getPass(String username, String password);
+    void updateUser(User user);
 }

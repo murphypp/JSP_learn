@@ -1,30 +1,59 @@
 package com.ucar.training.dao;
 
+import com.ucar.training.entity.Permission;
 import com.ucar.training.entity.Role;
 
 import java.util.List;
 
-public interface IRoleDao {
-    /*
-    通过用户名查找其对应的角色
+/**
+ * @program:training_servlet
+ * @description:角色表Dao层
+ * @author:linshaoxiong
+ * @create:2019-08-21 15:48
+ **/
+public interface  IRoleDao {
+    /**
+     * 添加角色
+     * @param role
+     * @return true/false
      */
-    Role getUserRoleByUsername(String username);
-    /*
-    添加角色
+    void addRole(Role role);
+    /**
+     * 删除角色
+     * @param id
+     * @return true/false
      */
-    int addRole(Role role);
-    /*
-    删除角色
+    void deleteRole(int id);
+    /**
+     * 修改角色
+     * @param
+     * @return true/false
      */
-    int delRole(Role role);
-    /*
-    查询全部角色
+    void updateRole(Role role);
+    /**
+     * 根据用户名来查找角色
+     * @param username
+     * @return Permission
      */
-    List<Role> getAllRoles();
+    Role getRoleByUsername(String username);
+    /**
+     * 根据角色id返回所有权限
+     * @param id
+     * @return Permission
+     */
+    List<Permission> getPermissionByRoleId(int id);
+    /**
+     * 返回所有角色
+     * @return List
+     */
+    List<Role> getAllRole();
+    /**
+     * 增加角色的某个权限
+     */
+    void addRolePermission(int role_id,int per_id,String perName);
+    /**
+     * 删除角色的某个权限
+     */
+    void deleteRolePermission(int role_id,int per_id);
 
-    Role getRoleById(int rid);
-
-    int delRolePermissionsById(int rid);
-
-    int addRolePermission(int rid, int mid);
 }

@@ -23,9 +23,10 @@
     <!-- mapping文件路径配置 -->
     <mappers>
         <mapper resource="mapper/UserMapper.xml"/>
-        <mapper resource="mapper/MessageMapper.xml"/>
         <mapper resource="mapper/RoleMapper.xml"/>
+<!--
         <mapper resource="mapper/PermissionMapper.xml"/>
+-->
     </mappers>
 
 </configuration>

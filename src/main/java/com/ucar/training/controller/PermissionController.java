@@ -1,3 +1,4 @@
+/*
 package com.ucar.training.controller;
 
 import com.ucar.training.entity.Permission;
@@ -55,3 +56,4 @@ public class PermissionController {
     }
 
 }
+*/

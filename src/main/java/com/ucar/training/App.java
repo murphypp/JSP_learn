@@ -1,3 +1,4 @@
+/*
 package com.ucar.training;
 
 import com.ucar.training.dao.IRoleDao;
@@ -7,11 +8,13 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 
+*/
 /**
  * @author XiongMM
  * @date 2019/7/29 20:06
  * @description
- */
+ *//*
+
 public class App {
     public static void main(String[] args) {
         new DBUtil();
@@ -21,3 +24,4 @@ public class App {
         System.out.println();
     }
 }
+*/

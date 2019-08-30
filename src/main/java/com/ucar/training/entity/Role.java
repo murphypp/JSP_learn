@@ -5,7 +5,9 @@ import java.util.List;
 public class Role {
     private int rid;
     private String rname;
-    private List<Permission> permissions;
+    private List<Permission> permissionList;
+
+
     public int getRid() {
         return rid;
     }
@@ -23,10 +25,10 @@ public class Role {
     }
 
     public List<Permission> getPermissions() {
-        return permissions;
+        return permissionList;
     }
 
-    public void setPermissions(List<Permission> permissions) {
-        this.permissions = permissions;
+    public void setPermissions(List<Permission> permissionList) {
+        this.permissionList = permissionList;
     }
 }

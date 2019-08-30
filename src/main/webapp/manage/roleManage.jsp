@@ -1,54 +1,43 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: EDZ
-  Date: 2019/8/19
-  Time: 16:46
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="C"%>
 <html>
 <head>
-    <title>角色管理</title>
+    <title>userinfo</title>
+    <link href="style/table.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
-<div>
-    <a href="${pageContext.request.contextPath}/checkRole.action">回到主页</a>
-</div>
-<div>
+<body background="http://www.demo.amitjakhu.com/login-form/images/bg.png">
+
+
+
+
+<div class="listTable">
     <table>
-        <form action="${pageContext.request.contextPath}/toAddRole.action" method="post">
-            <input hidden type="hidden" name="add" value="add">
-            <input type="submit" value="添加角色">
-        </form>
         <tr>
-            <th>角色id</th>
-            <th>角色名</th>
-            <th>角色权限</th>
-            <th>操作</th>
+            <th>id</th>
+            <th>权限</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
-        <%--@elvariable id="roles" type="java.util.List<com.ucar.training.entity.Role>"--%>
-        <c:forEach items="${roles}" var="role">
+        <C:forEach items="${requestScope.roleList}" var="h">
             <tr>
-                <td>${role.rid}</td>
-                <td>${role.rname}</td>
-                <td></td>
+                <td>${h.rid}</td>
+                <td>${h.rname}</td>
                 <td>
-                    <form method="post" action="${pageContext.request.contextPath}/delRole.action">
-                        <input hidden type="hidden" name="delete" value="delete">
-                        <input hidden type="hidden" name="rid" value="${role.rid}">
-                        <input hidden type="hidden" name="rname" value="${role.rname}">
-                        <input type="submit" value="删除">
-                    </form>
-                    <form action="${pageContext.request.contextPath}/toUpdateRole.action" method="post">
-                        <input hidden type="hidden" name="update" value="update">
-                        <input hidden type="hidden" name="rid" value="${role.rid}">
-                        <input type="submit" value="修改角色信息">
-                    </form>
+                    <a href="${pageContext.request.contextPath}/toUpdateRole.action?rid=${rid}" class="btn btn-inverse" >Modify</a>
+                    <a href="${pageContext.request.contextPath}/deleteRole.action?rid=${rid}" class="btn btn-danger" >Delete</a>
                 </td>
             </tr>
-        </c:forEach>
+        </C:forEach>
     </table>
+    <a href="${pageContext.request.contextPath}/add/addRole.jsp" class="btn btn-success" >新增</a>
+    <a href="${pageContext.request.contextPath}/transit.jsp" class="btn btn-success" >返回</a>
 </div>
+
+
 </body>
 </html>

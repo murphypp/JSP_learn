@@ -3,38 +3,50 @@ package com.ucar.training.dao;
 import com.ucar.training.entity.User;
 
 import java.util.List;
-import java.util.Set;
 
-public interface IUserDao {
+/**
+ * @program:training_servlet
+ * @description:用户信息dao层
+ * @author:linshaoxiong
+ * @create:2019-08-12 16:01
+ **/
+public interface IUserDao{
+    /**
+     * 根据用户名和密码来查找用户
+     *
+     * @param username
+     * @param password
+     * @return User
+     */
+    User getUserByPassword(String username,String password);
+    /**
+     * 根据用户名查找用户
+     * @param username
+     * @return User
+     */
+    User getUserByUsername(String username);
+    /**
+     * 返回所有用户
+     * @return List
+     */
+    List<User> getAllUser();
     /**
      * 添加用户
+     * @param user
+     * @return true/false
      */
-    void addUser(User u);
-
+    int addUser(User user);
     /**
      * 删除用户
+     * @param username
+     * @return true/false
      */
-    void delUser(String username);
-
+    int deleteUser(String username);
     /**
-     *
-     * @return 获得用户集合
+     * 修改用户
+     * @param
+     * @return true/false
      */
-    Set<User> getAllUser();
-
-    /**
-     * 获取指定用户
-     * @param username 用户名
-     * @return 用户对象
-     */
-    User findUserByUsername(String username);
-    /**
-     *修改用户信息
-     */
-    void updateUser(User u);
-    /**
-     * 获取用户数量
-     */
-    int getCountUser();
-
+    int updateUser(User user);
+    int addUserRole(User user);
 }

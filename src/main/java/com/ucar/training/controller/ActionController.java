@@ -23,7 +23,7 @@ public class ActionController {
         if(permission == null){
             return null;
         }
-        return "forward:"+permission.getUri()+".action";
+        return "forward:"+permission.getUrl()+".action";
     }
 
 

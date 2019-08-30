@@ -10,7 +10,7 @@ import java.io.Reader;
 
 public class DBUtil {
     /*
-    private static final String url = "jdbc:mysql://localhost:3306/server?useSSL=false&serverTimezone=UTC";
+    private static final String url = "jdbc:mysql://localhost:3306/jsp?useSSL=false&jspTimezone=UTC";
     private static final String name ="root";
     private static final String pass = "123456";
     static {

@@ -13,32 +13,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * @program:training_servlet
+ * @description:用户登录控制台
+ * @author:linshaoxiong
+ * @create:2019-08-29 10:30
+ **/
 @Controller
 public class LoginController {
     @Resource
-    private IUserService userServiceImpl;
+    private IUserService userService;
     @Resource
-    private IRoleService roleServiceImpl;
+    private IRoleService roleService;
+
     @RequestMapping("/login")
-    public String doLogin(String username, String password, HttpSession session, HttpServletRequest request){
-        int flag = userServiceImpl.getPass(username,password);
-        if (flag == 1) {
-            session.setAttribute("current", userServiceImpl.getUser(username));
-            return "redirect:/checkRole.action";
-        }
-        else {
-            System.out.println("登录失败：用户名或密码错误" + username);
-            request.setAttribute("warn","用户名或密码错误");
-            return "forward:login.jsp";
+    public String loginCheck(String username, String password, HttpSession session, HttpServletRequest request){
+        User user = userService.getUserByUsername(username);
+        if(user!=null&&user.getPassword().equals(password)){
+            //登录成功
+            System.out.println(username+" "+password+"登录成功！");
+            session.setAttribute("currentUser",user);
+            return "redirect:roleCheck.action";
+        }else{
+            System.out.println(username+" "+password+"登录失败！");
+            request.setAttribute("message","用户名或者密码错误！");
+            return  "forward:login.jsp";
         }
     }
-    @RequestMapping("/checkRole")
-    public String checkRole(HttpSession session, HttpServletRequest request){
-        User user = (User) session.getAttribute("current");
-        if(user == null)return "redirect:login.jsp";
-        Role role = roleServiceImpl.getRoleByUsername(user.getUsername());
-        List<Permission> permissions = role.getPermissions();
+
+    @RequestMapping("/roleCheck")
+    public String roleCheck(HttpSession session,HttpServletRequest request){
+        User user =(User)session.getAttribute("currentUser");
+        Role role =roleService.getRoleByUsername(user.getUsername());
+        List<Permission> permissionList= role.getPermissions();
+        session.setAttribute("currentPermission",permissionList);
         session.setAttribute("currentRole",role);
-        return "forward:user.jsp";
+        return "forward:transit.jsp";
     }
 }

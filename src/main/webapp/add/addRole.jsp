@@ -1,37 +1,20 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: EDZ
-  Date: 2019/8/20
-  Time: 14:35
+  Date: 2019/8/22
+  Time: 14:19
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>添加角色</title>
+    <title>Title</title>
 </head>
 <body>
-<div>
-    <form action="${pageContext.request.contextPath}/addRole.action" method="post">
-        <input hidden type="hidden" name="toAdd" value="toAdd">
-        <label>角色id
-            <input type="text" name="rid">
-        </label>
-        <br/>
-        <label>角色名
-            <input type="text" name="rname" >
-        </label>
-        <br/>
-        <div>角色权限
-            <%--@elvariable id="permissions" type="java.util.List<com.ucar.training.entity.Permission>"--%>
-            <c:forEach var="permission" items="${permissions}">
-                <input type="checkbox" name="permission" value="${permission.mid}">
-                ${permission.mname}
-            </c:forEach>
-        </div>
-        <input type="submit" value="修改">
-    </form>
-</div>
+<form action="${pageContext.request.contextPath}/addRole.action" method="post" >
+    <label >id:</label>  <input type="text" name="id" id="id"    >   <br>
+    <label >角色名:</label>  <input type="text" name="roleName"  > <br>
+    <input type="submit" value="新增" class="" > <input type="reset" name="重置" class="" >
+</form>
 </body>
 </html>
